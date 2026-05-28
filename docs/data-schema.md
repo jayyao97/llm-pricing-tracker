@@ -1,0 +1,41 @@
+# Data Schema
+
+`data/prices.json` is the single data source for this project.
+
+## Root
+
+- `schemaVersion`: Data schema version. Current value: `2`.
+- `currency`: Default currency for pricing items without an explicit `currency`.
+- `unit`: Default pricing unit.
+- `exchangeRate`: Optional display/conversion defaults for cross-currency comparison.
+- `versions`: Price snapshots sorted by date, newest first.
+
+## Version
+
+- `date`: Price snapshot date in `YYYY-MM-DD` format.
+- `effectiveDate`: Effective pricing date.
+- `notes`: Version notes.
+- `sources`: Sources used by this version.
+- `models`: Model pricing records.
+
+## Model
+
+- `provider`: Provider name.
+- `id`: Model ID.
+- `name`: Display name.
+- `contextWindow`: Context window; use `null` when unknown.
+- `pricingItems`: Structured pricing line items.
+- `source.url`: Official source URL for the current model price.
+
+## Pricing Item
+
+- `category`: Machine-readable category, such as `input_tokens`, `output_tokens`, `cache_read_tokens`, `cache_write_tokens`, or `cache_storage`.
+- `label`: Human-readable label.
+- `price`: Numeric price in the item's official currency, or `null` when the official source gives a non-token or non-normalized rule.
+- `currency`: Optional ISO currency override, such as `CNY`; defaults to root `currency`.
+- `unit`: Billing unit, such as `1M tokens`.
+- `conditions.contextRange`: Context-dependent rule, such as `prompt <= 200k tokens`; use `all` when no range split applies.
+- `conditions.cacheDuration`: Cache creation or storage duration when it changes pricing.
+- `conditions.note`: Extra official rule text that cannot be safely normalized yet.
+
+Prefer one pricing item per distinct billable rule. Do not collapse context tiers, cache read/write prices, cache storage time, or modality-specific prices into a single string when they affect billing.

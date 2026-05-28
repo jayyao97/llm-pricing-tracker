@@ -1,0 +1,40 @@
+name: Model request
+description: Request a provider or model to be added.
+title: "[Model request]: "
+labels:
+  - data
+  - model-request
+body:
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      placeholder: Provider name
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model
+      placeholder: Model display name or API ID
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official pricing URL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: pricing
+    attributes:
+      label: Pricing details
+      description: Paste the official pricing rules if available.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Mention context tiers, cache pricing, currency, region, or special pricing rules.

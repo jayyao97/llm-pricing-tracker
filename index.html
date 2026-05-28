@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LLM Pricing Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css?v=20260528-05">
+  </head>
+  <body>
+    <div class="shell-glow" aria-hidden="true"></div>
+    <header class="page-header">
+      <div class="title-block">
+        <p class="eyebrow">LLM Pricing Tracker</p>
+        <h1>Model Pricing</h1>
+        <p class="subtitle">Track official API pricing by date, provider, model, and context tier.</p>
+        <div class="status-strip" aria-label="Dataset status">
+          <span>Official currency / 1M tokens</span>
+          <span>Official sources</span>
+          <span>Context-tier aware</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="toolbar" aria-label="Filters">
+        <label>
+          Price Date
+          <select id="versionSelect"></select>
+        </label>
+        <label>
+          Search
+          <input id="searchInput" type="search" placeholder="Model or provider">
+        </label>
+        <div class="filter-field provider-filter-label">
+          <span>Provider</span>
+          <details id="providerFilter" class="provider-filter">
+            <summary><span id="providerSummary">All</span></summary>
+            <div id="providerOptions" class="provider-options"></div>
+          </details>
+        </div>
+        <label>
+          USD/CNY Rate
+          <span class="rate-control">
+            <input id="usdCnyRate" type="number" inputmode="decimal" min="0" step="0.0001">
+            <button id="syncRate" type="button">Sync</button>
+          </span>
+          <span id="rateStatus" class="rate-status"></span>
+        </label>
+      </section>
+
+      <section class="summary" id="summary"></section>
+
+      <section class="table-wrap" aria-label="Model pricing table">
+        <div class="table-titlebar">
+          <div>
+            <h2>Model Catalog</h2>
+            <p>Dense pricing grid inspired by model marketplaces and gateway catalogs.</p>
+          </div>
+          <span id="rowCount" class="table-count"></span>
+        </div>
+        <table>
+          <thead>
+            <tr id="priceHeader"></tr>
+          </thead>
+          <tbody id="priceRows"></tbody>
+        </table>
+      </section>
+
+      <section class="compare" aria-live="polite">
+        <div class="section-head">
+          <h2>Selected Comparison</h2>
+          <button id="clearCompare" type="button" hidden>Clear</button>
+        </div>
+        <div id="compareList" class="compare-list"></div>
+      </section>
+
+      <section class="notes">
+        <h2>Version Notes</h2>
+        <div id="versionNotes"></div>
+      </section>
+    </main>
+
+    <script src="src/app.js?v=20260528-06" defer></script>
+  </body>
+</html>

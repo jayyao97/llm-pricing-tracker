@@ -1,0 +1,48 @@
+name: Price correction
+description: Report an incorrect, outdated, or missing price.
+title: "[Price correction]: "
+labels:
+  - data
+  - price-correction
+body:
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      placeholder: OpenAI, Anthropic, Google, DeepSeek, etc.
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model
+      placeholder: Model display name or API ID
+    validations:
+      required: true
+  - type: input
+    id: effective_date
+    attributes:
+      label: Effective date
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Correction
+      description: Include the exact pricing fields and values that should change.
+      placeholder: Input tokens should be $... per 1M tokens; output tokens should be $...
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official source URL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Add context for context tiers, cache pricing, discounts, regions, or currency rules.
