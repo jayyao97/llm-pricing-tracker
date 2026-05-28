@@ -3,12 +3,53 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LLM Pricing Tracker</title>
+    <title>LLM Pricing Tracker | Compare OpenAI, Claude, Gemini, DeepSeek, Qwen API Prices</title>
+    <meta name="description" content="Compare official LLM API pricing by model, provider, date, context tier, input, output, cache read, and cache write. Tracks OpenAI, Anthropic Claude, Google Gemini, DeepSeek, Qwen, GLM, Doubao, Kimi, MiniMax, MiMo, and Grok prices.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://openllmprices.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://openllmprices.com/">
+    <meta property="og:title" content="LLM Pricing Tracker">
+    <meta property="og:description" content="Date-versioned official LLM API pricing for comparing model input, output, cache, and context-tier costs across major providers.">
+    <meta property="og:site_name" content="LLM Pricing Tracker">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LLM Pricing Tracker">
+    <meta name="twitter:description" content="Compare official LLM API pricing across OpenAI, Claude, Gemini, DeepSeek, Qwen, GLM, Doubao, Kimi, MiniMax, MiMo, and Grok.">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css?v=20260528-05">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "LLM Pricing Tracker",
+        "description": "Date-versioned official API pricing for large language models, including input, output, cache read, cache write, and context-tier pricing.",
+        "url": "https://openllmprices.com/",
+        "license": "https://github.com/jayyao97/llm-pricing-tracker/blob/master/LICENSE",
+        "isAccessibleForFree": true,
+        "keywords": [
+          "LLM pricing",
+          "AI model pricing",
+          "OpenAI pricing",
+          "Claude pricing",
+          "Gemini pricing",
+          "DeepSeek pricing",
+          "Qwen pricing"
+        ],
+        "creator": {
+          "@type": "Organization",
+          "name": "OpenLLMPrices"
+        },
+        "distribution": {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "https://openllmprices.com/data/prices.json"
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="shell-glow" aria-hidden="true"></div>
@@ -83,6 +124,14 @@
         <div id="versionNotes"></div>
       </section>
     </main>
+
+    <noscript>
+      <section>
+        <h2>Official LLM API Pricing Dataset</h2>
+        <p>LLM Pricing Tracker compares official API prices for OpenAI, Anthropic Claude, Google Gemini, DeepSeek, Alibaba Qwen, Zhipu GLM, ByteDance Doubao, Kimi, MiniMax, Xiaomi MiMo, and xAI Grok models. The dataset tracks input tokens, output tokens, cache read, cache write, context tiers, source URLs, and date-versioned price snapshots.</p>
+        <p>The raw pricing dataset is available at <a href="/data/prices.json">/data/prices.json</a>.</p>
+      </section>
+    </noscript>
 
     <script src="src/app.js?v=20260528-06" defer></script>
   </body>
