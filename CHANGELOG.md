@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-05-29
+
+- Added a new pricing snapshot for Claude Opus 4.8 and kept the 2026-05-28 snapshot with Claude Opus 4.7.
+- Rechecked tracked standard token pricing sources; no other tracked price changes were applied.
+- Updated the default USD/CNY rate to 6.791862 from ExchangeRate-API.
+
 ## 2026-05-28
 
 - Refreshed the active pricing snapshot date and source access dates.
