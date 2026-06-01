@@ -20,6 +20,8 @@ const els = {
   providerOptions: document.querySelector("#providerOptions"),
   providerSummary: document.querySelector("#providerSummary"),
   summary: document.querySelector("#summary"),
+  tableWrap: document.querySelector(".table-wrap"),
+  tableScroll: document.querySelector("#tableScroll"),
   header: document.querySelector("#priceHeader"),
   rows: document.querySelector("#priceRows"),
   rowCount: document.querySelector("#rowCount"),
@@ -32,6 +34,7 @@ const els = {
 };
 
 const moneyFormatters = new Map();
+let floatingHeaderSignature = "";
 
 async function init() {
   if (window.location.protocol === "file:") {
@@ -48,6 +51,7 @@ async function init() {
   renderVersionOptions();
   renderProviderOptions();
   bindEvents();
+  watchFloatingHeaders();
   syncExchangeRate();
   render();
 }
@@ -101,6 +105,9 @@ function bindEvents() {
     render();
   });
   els.syncRate.addEventListener("click", syncExchangeRate);
+  window.addEventListener("scroll", updateFloatingHeaders, { passive: true });
+  window.addEventListener("resize", updateFloatingHeaders);
+  els.tableScroll.addEventListener("scroll", updateFloatingHeaders, { passive: true });
 }
 
 function renderVersionOptions() {
@@ -140,11 +147,13 @@ function providerOption(value, label, checked) {
 function render() {
   const version = currentVersion();
   const models = filteredModels(version);
+  clearFloatingHeaders();
   renderHeader(version);
   renderSummary(version, models);
   renderRows(version, models);
   renderCompare(version);
   renderNotes(version);
+  updateFloatingHeaders();
 }
 
 function currentVersion() {
@@ -496,6 +505,11 @@ function renderCompare(version) {
       setModelSelected(button.dataset.removeSelection, false);
     });
   });
+  const compareScroll = els.compareList.querySelector(".compare-table-wrap");
+  if (compareScroll) {
+    compareScroll.addEventListener("scroll", updateFloatingHeaders, { passive: true });
+  }
+  updateFloatingHeaders();
 }
 
 function selectedCompareModels() {
@@ -518,6 +532,133 @@ function selectedCompareModels() {
   }
 
   return selected;
+}
+
+function clearFloatingHeaders() {
+  document.querySelectorAll(".floating-header").forEach((header) => header.remove());
+}
+
+function watchFloatingHeaders() {
+  const tick = () => {
+    const compareScroll = els.compareList.querySelector(".compare-table-wrap");
+    const signature = [
+      window.scrollX,
+      window.scrollY,
+      window.innerWidth,
+      els.tableScroll.scrollLeft,
+      compareScroll?.scrollLeft || 0,
+    ].join(":");
+
+    if (signature !== floatingHeaderSignature) {
+      floatingHeaderSignature = signature;
+      updateFloatingHeaders();
+    }
+  };
+
+  window.setInterval(tick, 100);
+}
+
+function updateFloatingHeaders() {
+  updateCatalogFloatingHeader();
+  updateCompareFloatingHeader();
+}
+
+function updateCatalogFloatingHeader() {
+  const table = els.tableScroll?.querySelector("table");
+  const headerRow = els.header;
+  if (!table || !headerRow || headerRow.children.length === 0) {
+    removeFloatingHeader("catalog");
+    return;
+  }
+
+  const tableRect = table.getBoundingClientRect();
+  const scrollRect = els.tableScroll.getBoundingClientRect();
+  const headerRect = headerRow.getBoundingClientRect();
+  const active = tableRect.top < 0 && tableRect.bottom > headerRect.height;
+  const floating = ensureFloatingHeader("catalog");
+  floating.hidden = !active;
+  if (!active) {
+    return;
+  }
+
+  floating.style.left = `${Math.max(scrollRect.left, 0)}px`;
+  floating.style.width = `${Math.min(scrollRect.width, window.innerWidth - Math.max(scrollRect.left, 0))}px`;
+  const floatingScroll = floating.querySelector(".floating-header-scroll");
+  const inner = floating.querySelector(".floating-header-inner");
+  inner.style.width = `${table.offsetWidth}px`;
+  inner.innerHTML = `<table>${catalogFloatingColGroup(headerRow)}<thead><tr>${headerRow.innerHTML}</tr></thead></table>`;
+  floatingScroll.scrollLeft = els.tableScroll.scrollLeft;
+  bindFloatingSortButtons(floating);
+}
+
+function catalogFloatingColGroup(headerRow) {
+  return `
+    <colgroup>
+      ${[...headerRow.children].map((cell) => `<col style="width: ${cell.getBoundingClientRect().width}px">`).join("")}
+    </colgroup>
+  `;
+}
+
+function updateCompareFloatingHeader() {
+  const compareScroll = els.compareList.querySelector(".compare-table-wrap");
+  const compareGrid = compareScroll?.querySelector(".compare-grid");
+  if (!compareScroll || !compareGrid) {
+    removeFloatingHeader("compare");
+    return;
+  }
+
+  const headers = [...compareGrid.querySelectorAll(".compare-header")];
+  if (headers.length === 0) {
+    removeFloatingHeader("compare");
+    return;
+  }
+
+  const gridRect = compareGrid.getBoundingClientRect();
+  const scrollRect = compareScroll.getBoundingClientRect();
+  const headerHeight = Math.max(...headers.map((header) => header.getBoundingClientRect().height));
+  const active = gridRect.top < 0 && gridRect.bottom > headerHeight;
+  const floating = ensureFloatingHeader("compare");
+  floating.hidden = !active;
+  if (!active) {
+    return;
+  }
+
+  floating.style.left = `${Math.max(scrollRect.left, 0)}px`;
+  floating.style.width = `${Math.min(scrollRect.width, window.innerWidth - Math.max(scrollRect.left, 0))}px`;
+  const floatingScroll = floating.querySelector(".floating-header-scroll");
+  const inner = floating.querySelector(".floating-header-inner");
+  inner.style.width = `${compareGrid.scrollWidth}px`;
+  inner.innerHTML = `
+    <div class="compare-grid" style="--compare-columns: ${headers.length - 1}">
+      ${headers.map((header) => `<div class="${escapeHtml(header.className)}">${header.innerHTML}</div>`).join("")}
+    </div>
+  `;
+  floatingScroll.scrollLeft = compareScroll.scrollLeft;
+}
+
+function ensureFloatingHeader(kind) {
+  let floating = document.querySelector(`.floating-header[data-floating="${kind}"]`);
+  if (!floating) {
+    floating = document.createElement("div");
+    floating.className = `floating-header floating-header-${kind}`;
+    floating.dataset.floating = kind;
+    floating.innerHTML = '<div class="floating-header-scroll"><div class="floating-header-inner"></div></div>';
+    document.body.append(floating);
+  }
+  return floating;
+}
+
+function removeFloatingHeader(kind) {
+  document.querySelector(`.floating-header[data-floating="${kind}"]`)?.remove();
+}
+
+function bindFloatingSortButtons(floating) {
+  floating.querySelectorAll("[data-sort-key]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setSort(button.dataset.sortKey);
+      render();
+    });
+  });
 }
 
 function getItems(model, category) {
