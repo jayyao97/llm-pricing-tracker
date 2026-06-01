@@ -26,6 +26,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -350,12 +355,17 @@ input[type="checkbox"] {
 
 .table-wrap {
   margin-top: 34px;
-  overflow-x: auto;
-  overflow-y: visible;
+  overflow: visible;
   border: 0;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
+}
+
+.table-scroll,
+.compare-table-wrap {
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 .table-titlebar {
@@ -411,9 +421,6 @@ td {
 }
 
 th {
-  position: sticky;
-  top: 0;
-  z-index: 5;
   background: var(--bg);
   color: var(--muted);
   font-size: 14px;
@@ -566,7 +573,7 @@ th:nth-child(1),
 th:nth-child(2),
 th:nth-child(3) {
   background: var(--bg);
-  z-index: 5;
+  z-index: 7;
 }
 
 tbody tr:hover td:nth-child(1),
@@ -674,7 +681,6 @@ tbody tr.is-selected td:nth-child(3) {
 }
 
 .compare-table-wrap {
-  overflow-x: auto;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -704,10 +710,59 @@ tbody tr.is-selected td:nth-child(3) {
 }
 
 .compare-header {
+  background: var(--bg);
   border-top: 0;
   color: var(--muted);
   font-size: 14px;
   font-weight: 560;
+}
+
+.compare-grid > .compare-header:first-child {
+  z-index: 6;
+}
+
+.floating-header {
+  position: fixed;
+  top: 0;
+  z-index: 40;
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.floating-header[hidden] {
+  display: none;
+}
+
+.floating-header-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.floating-header-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.floating-header-inner {
+  min-width: 100%;
+}
+
+.floating-header table {
+  min-width: 1240px;
+  table-layout: fixed;
+}
+
+.floating-header th {
+  border-bottom: 0;
+}
+
+.floating-header .compare-grid {
+  min-width: max(100%, calc(220px + var(--compare-columns) * 190px));
+}
+
+.floating-header .compare-cell {
+  border-top: 0;
 }
 
 .compare-row-head {
