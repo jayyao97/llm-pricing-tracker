@@ -118,7 +118,7 @@
           "provider": "Anthropic",
           "id": "claude-opus-4.8",
           "name": "Claude Opus 4.8",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },
@@ -134,7 +134,7 @@
           "provider": "Anthropic",
           "id": "claude-sonnet-4.6",
           "name": "Claude Sonnet 4.6",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },
@@ -557,7 +557,7 @@
           "provider": "Anthropic",
           "id": "claude-opus-4.8",
           "name": "Claude Opus 4.8",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },
@@ -573,7 +573,7 @@
           "provider": "Anthropic",
           "id": "claude-sonnet-4.6",
           "name": "Claude Sonnet 4.6",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },
@@ -981,7 +981,7 @@
           "provider": "Anthropic",
           "id": "claude-opus-4.7",
           "name": "Claude Opus 4.7",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },
@@ -997,7 +997,7 @@
           "provider": "Anthropic",
           "id": "claude-sonnet-4.6",
           "name": "Claude Sonnet 4.6",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },

@@ -459,12 +459,13 @@ function renderCompare(version) {
           </div>
         `).join("")}
         ${rows.map((row) => `
-          <div class="compare-cell compare-row-head">${escapeHtml(row.label)}</div>
+          <div class="compare-cell compare-row-head${row.isBandHeader ? " compare-band-head" : ""}">${escapeHtml(row.label)}</div>
           ${rankedSelected.map((model) => {
             const rank = row.rankByModel?.get(model.id);
             const rankClass = rank ? ` rank-${rank}` : "";
             const rankLabel = rank ? `<span class="rank-badge rank-badge-${rank}">#${rank}</span>` : "";
-            return `<div class="compare-cell${rankClass}">${row.value(model)}${rankLabel}</div>`;
+            const bandClass = row.isBandHeader ? " compare-band-cell" : "";
+            return `<div class="compare-cell${bandClass}${rankClass}">${row.value(model)}${rankLabel}</div>`;
           }).join("")}
         `).join("")}
       </div>
@@ -574,40 +575,245 @@ function findAllRangesItem(model, category) {
 }
 
 function compareRows(models) {
-  const itemRows = [];
-  const seen = new Set();
-
-  for (const model of models) {
-    for (const item of model.pricingItems) {
-      const key = itemKey(item);
-      if (seen.has(key)) {
-        continue;
-      }
-      seen.add(key);
-      itemRows.push({
-        key,
-        label: `${labelForCategory(displayCategory(item.category))} - ${conditionText(item)}`,
-        isComparable: comparableCount(models, key) >= 2,
-        rankByModel: rankModels(models, key),
-        value: (target) => {
-          const match = findItemForKey(target, key);
-          return match ? formatPrice(match) : '<span class="price-note">-</span>';
-        },
-      });
-    }
-  }
+  const bands = contextBands(models);
+  const specs = comparePriceSpecs(models);
+  const priceRows = bands.flatMap((band) => [
+    {
+      label: band.label,
+      isBandHeader: true,
+      value: (model) => matchedTierSummary(model, band),
+    },
+    ...specs
+      .map((spec) => priceRowForBand(models, band, spec))
+      .filter((row) => row.hasAnyValue),
+  ]);
 
   return [
     {
       label: "Context window",
       value: (model) => escapeHtml(model.contextWindow || "-"),
     },
-    ...itemRows,
+    ...priceRows,
     {
       label: "Official source",
       value: (model) => `<a href="${escapeHtml(model.source.url)}" target="_blank" rel="noreferrer">Open</a>`,
     },
   ];
+}
+
+function comparePriceSpecs(models) {
+  const seen = new Set();
+  const specs = [];
+
+  for (const model of models) {
+    for (const item of model.pricingItems) {
+      const category = displayCategory(item.category);
+      const cacheDuration = item.conditions.cacheDuration || "";
+      const key = `${category}|${cacheDuration}`;
+      if (seen.has(key)) {
+        continue;
+      }
+      seen.add(key);
+      specs.push({
+        category,
+        cacheDuration,
+        label: cacheDuration
+          ? `${labelForCategory(category)} (${cacheDuration})`
+          : labelForCategory(category),
+      });
+    }
+  }
+
+  return specs.sort((a, b) => {
+    return categoryOrder(a.category) - categoryOrder(b.category) || a.cacheDuration.localeCompare(b.cacheDuration);
+  });
+}
+
+function priceRowForBand(models, band, spec) {
+  const row = {
+    label: spec.label,
+    isComparable: comparableCountForBand(models, band, spec) >= 2,
+    rankByModel: rankModelsForBand(models, band, spec),
+    hasAnyValue: models.some((model) => findItemForBand(model, band, spec)),
+    value: (model) => formatBandPrice(model, band, spec),
+  };
+
+  return row;
+}
+
+function contextBands(models) {
+  const boundaries = new Set([0]);
+  let hasUncappedOpenEndedRange = false;
+
+  for (const model of models) {
+    const contextLimit = parseTokenValue(model.contextWindow);
+    if (Number.isFinite(contextLimit)) {
+      boundaries.add(contextLimit);
+    }
+
+    for (const item of model.pricingItems) {
+      if (isAllRange(item.conditions.contextRange)) {
+        continue;
+      }
+      const range = parseContextRange(item.conditions.contextRange);
+      if (!range) {
+        continue;
+      }
+      if (range.lower > 0) {
+        boundaries.add(range.lower);
+      }
+      if (Number.isFinite(range.upper)) {
+        boundaries.add(range.upper);
+      } else {
+        hasUncappedOpenEndedRange = !Number.isFinite(contextLimit) || hasUncappedOpenEndedRange;
+      }
+    }
+  }
+
+  const points = [...boundaries].filter((value) => value >= 0).sort((a, b) => a - b);
+  const bands = [];
+  for (let index = 1; index < points.length; index += 1) {
+    if (points[index] > points[index - 1]) {
+      bands.push({
+        lower: points[index - 1],
+        upper: points[index],
+        label: bandLabel(points[index - 1], points[index]),
+      });
+    }
+  }
+
+  const maxPoint = points[points.length - 1];
+  if (hasUncappedOpenEndedRange && maxPoint > 0) {
+    bands.push({
+      lower: maxPoint,
+      upper: Number.POSITIVE_INFINITY,
+      label: `> ${formatTokenCount(maxPoint)}`,
+    });
+  }
+
+  return bands.length ? bands : [{ lower: 0, upper: Number.POSITIVE_INFINITY, label: "All context ranges" }];
+}
+
+function bandLabel(lower, upper) {
+  if (lower === 0) {
+    return `<= ${formatTokenCount(upper)}`;
+  }
+  return `${formatTokenCount(lower)} - ${formatTokenCount(upper)}`;
+}
+
+function formatTokenCount(value) {
+  if (value >= 1000000 && value % 1000000 === 0) {
+    return `${value / 1000000}M`;
+  }
+  if (value >= 1000 && value % 1000 === 0) {
+    return `${value / 1000}k`;
+  }
+  return `${value}`;
+}
+
+function parseContextRange(range) {
+  if (isAllRange(range)) {
+    return { lower: 0, upper: Number.POSITIVE_INFINITY };
+  }
+
+  const text = range.toLowerCase();
+  const numbers = [...text.matchAll(/(\d+(?:\.\d+)?)\s*([km])?/g)].map((match) => parseTokenNumber(match[1], match[2]));
+  if (numbers.length === 0) {
+    return null;
+  }
+
+  if (text.includes("<=") || text.includes("<")) {
+    if (numbers.length >= 2) {
+      return { lower: numbers[0], upper: numbers[1] };
+    }
+    return { lower: 0, upper: numbers[0] };
+  }
+
+  if (text.includes(">=") || text.includes(">")) {
+    return { lower: numbers[0], upper: Number.POSITIVE_INFINITY };
+  }
+
+  return null;
+}
+
+function parseTokenValue(value) {
+  if (!value) {
+    return Number.NaN;
+  }
+  const match = String(value).toLowerCase().match(/(\d+(?:\.\d+)?)\s*([km])?/);
+  return match ? parseTokenNumber(match[1], match[2]) : Number.NaN;
+}
+
+function parseTokenNumber(value, unit) {
+  const number = Number(value);
+  if (unit === "m") {
+    return number * 1000000;
+  }
+  if (unit === "k") {
+    return number * 1000;
+  }
+  return number;
+}
+
+function findItemForBand(model, band, spec) {
+  const exact = model.pricingItems.find((item) => {
+    return displayCategory(item.category) === spec.category
+      && (item.conditions.cacheDuration || "") === spec.cacheDuration
+      && rangeCoversBand(parseContextRange(item.conditions.contextRange), band);
+  });
+
+  if (exact) {
+    return exact;
+  }
+
+  return model.pricingItems.find((item) => {
+    return displayCategory(item.category) === spec.category
+      && (item.conditions.cacheDuration || "") === spec.cacheDuration
+      && isAllRange(item.conditions.contextRange);
+  });
+}
+
+function rangeCoversBand(range, band) {
+  if (!range) {
+    return false;
+  }
+  return range.lower <= band.lower && range.upper >= band.upper;
+}
+
+function formatBandPrice(model, band, spec) {
+  const item = findItemForBand(model, band, spec);
+  if (!item) {
+    return '<span class="price-note">-</span>';
+  }
+
+  const tier = contextConditionText(item);
+  const tierNote = tier === "all ranges" ? "" : `<span class="price-converted">matched: ${escapeHtml(tier)}</span>`;
+  return `${formatPrice(item)}${tierNote}`;
+}
+
+function matchedTierSummary(model, band) {
+  const tiers = new Set();
+  for (const item of model.pricingItems) {
+    if (rangeCoversBand(parseContextRange(item.conditions.contextRange), band)) {
+      tiers.add(contextConditionText(item));
+    }
+  }
+
+  if (tiers.size === 0) {
+    return '<span class="price-note">not covered</span>';
+  }
+  if (tiers.size === 1) {
+    const [tier] = tiers;
+    return tier === "all ranges" ? "all ranges" : escapeHtml(tier);
+  }
+
+  return "multiple official tiers";
+}
+
+function contextConditionText(item) {
+  return item.conditions.contextRange && !isAllRange(item.conditions.contextRange)
+    ? item.conditions.contextRange
+    : "all ranges";
 }
 
 function sortModelsByComparisonScore(models, rows) {
@@ -618,6 +824,36 @@ function sortModelsByComparisonScore(models, rows) {
     const rightScore = comparisonScore(right, rows);
     return rightScore - leftScore || sourceOrder.get(left.id) - sourceOrder.get(right.id);
   });
+}
+
+function comparableCountForBand(models, band, spec) {
+  return models.filter((model) => Number.isFinite(convertedPrice(findItemForBand(model, band, spec)))).length;
+}
+
+function rankModelsForBand(models, band, spec) {
+  const priced = models
+    .map((model) => {
+      const item = findItemForBand(model, band, spec);
+      const price = convertedPrice(item);
+      return Number.isFinite(price) ? { model, price } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.price - b.price);
+
+  const ranks = new Map();
+  let rank = 0;
+  let previousPrice = null;
+  for (const entry of priced) {
+    if (previousPrice === null || entry.price !== previousPrice) {
+      rank += 1;
+      previousPrice = entry.price;
+    }
+    if (rank <= 3) {
+      ranks.set(entry.model.id, rank);
+    }
+  }
+
+  return ranks;
 }
 
 function comparisonScore(model, rows) {
