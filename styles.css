@@ -684,6 +684,18 @@ tbody tr.is-selected td:nth-child(3) {
   z-index: 3;
 }
 
+.compare-band-head,
+.compare-band-cell {
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 560;
+}
+
+.compare-band-head {
+  color: var(--ink);
+}
+
 .compare-cell.rank-1 {
   background: var(--rank-1);
 }
