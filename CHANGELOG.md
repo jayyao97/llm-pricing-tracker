@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-06-01
+
+- Added a new pricing snapshot for MiniMax M3 with 1M context support.
+- Replaced MiniMax M2.7 and M2.7 Highspeed in the latest snapshot.
+- Added MiniMax M3 pricing tiers for input at or below 512k tokens and input above 512k tokens.
+- Updated DeepSeek V4 Pro notes from promotion pricing to official post-promotion pricing; token prices are unchanged.
+- Expanded Doubao Seed 2.0 Pro, Lite, and Mini into official input-length pricing tiers.
+- Updated the default USD/CNY rate to 6.772555 from ExchangeRate-API.
+
 ## 2026-05-29
 
 - Added a new pricing snapshot for Claude Opus 4.8 and kept the 2026-05-28 snapshot with Claude Opus 4.7.
