@@ -56,7 +56,6 @@ function bindEvents() {
   els.versionSelect.addEventListener("change", () => {
     state.selectedVersion = els.versionSelect.value;
     updateDateParam(state.selectedVersion);
-    state.selectedModels.clear();
     state.selectedProviders.clear();
     renderProviderOptions();
     render();
@@ -314,10 +313,11 @@ function renderRows(version, models) {
   }
 
   els.rows.innerHTML = models.map((model) => {
-    const checked = state.selectedModels.has(model.id) ? "checked" : "";
+    const selectionKey = selectedModelKey(version, model);
+    const checked = state.selectedModels.has(selectionKey) ? "checked" : "";
     return `
-      <tr class="${checked ? "is-selected" : ""}" data-model-id="${escapeHtml(model.id)}">
-        <td><input class="compare-checkbox" type="checkbox" data-model-id="${escapeHtml(model.id)}" ${checked} aria-label="Select ${escapeHtml(model.name)}"></td>
+      <tr class="${checked ? "is-selected" : ""}" data-selection-key="${escapeHtml(selectionKey)}">
+        <td><input class="compare-checkbox" type="checkbox" data-selection-key="${escapeHtml(selectionKey)}" ${checked} aria-label="Select ${escapeHtml(model.name)}"></td>
         <td>${providerIcon(model)}</td>
         <td>
           <div class="model-name">${escapeHtml(model.name)}</div>
@@ -335,11 +335,11 @@ function renderRows(version, models) {
 
   els.rows.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
     checkbox.addEventListener("change", (event) => {
-      setModelSelected(event.target.dataset.modelId, event.target.checked);
+      setModelSelected(event.target.dataset.selectionKey, event.target.checked);
     });
   });
 
-  els.rows.querySelectorAll("tr[data-model-id]").forEach((row) => {
+  els.rows.querySelectorAll("tr[data-selection-key]").forEach((row) => {
     row.addEventListener("click", (event) => {
       if (event.target.closest("a, button, input, select")) {
         return;
@@ -347,21 +347,31 @@ function renderRows(version, models) {
 
       const checkbox = row.querySelector("input[type='checkbox']");
       checkbox.checked = !checkbox.checked;
-      setModelSelected(row.dataset.modelId, checkbox.checked);
+      setModelSelected(row.dataset.selectionKey, checkbox.checked);
     });
   });
 }
 
-function setModelSelected(modelId, isSelected) {
+function setModelSelected(selectionKey, isSelected) {
   if (isSelected) {
-    state.selectedModels.add(modelId);
+    state.selectedModels.add(selectionKey);
   } else {
-    state.selectedModels.delete(modelId);
+    state.selectedModels.delete(selectionKey);
   }
 
-  const row = els.rows.querySelector(`tr[data-model-id="${CSS.escape(modelId)}"]`);
-  row?.classList.toggle("is-selected", isSelected);
+  const row = els.rows.querySelector(`tr[data-selection-key="${CSS.escape(selectionKey)}"]`);
+  if (row) {
+    row.classList.toggle("is-selected", isSelected);
+    const checkbox = row.querySelector("input[type='checkbox']");
+    if (checkbox) {
+      checkbox.checked = isSelected;
+    }
+  }
   renderCompare(currentVersion());
+}
+
+function selectedModelKey(version, model) {
+  return `${version.date}::${model.provider}::${model.id}`;
 }
 
 function providerIcon(model) {
@@ -438,30 +448,39 @@ function providerIcon(model) {
 }
 
 function renderCompare(version) {
-  const selected = version.models.filter((model) => state.selectedModels.has(model.id));
+  const selected = selectedCompareModels();
   els.clearCompare.hidden = selected.length === 0;
 
   if (selected.length === 0) {
-    els.compareList.innerHTML = '<p class="empty">Select models to compare them here.</p>';
+    els.compareList.innerHTML = '<p class="empty">Select models across one or more dates to compare them here.</p>';
     return;
   }
 
   const rows = compareRows(selected);
   const rankedSelected = sortModelsByComparisonScore(selected, rows);
   els.compareList.innerHTML = `
+    <div class="compare-basket" aria-label="Comparison basket">
+      ${selected.map((model) => `
+        <button class="compare-chip" type="button" data-remove-selection="${escapeHtml(model.compareKey)}" title="Remove ${escapeHtml(model.name)} from comparison">
+          <span>${escapeHtml(model.name)}</span>
+          <small>${escapeHtml(model.provider)} · ${escapeHtml(model.snapshotDate)}</small>
+          <span aria-hidden="true">×</span>
+        </button>
+      `).join("")}
+    </div>
     <div class="compare-table-wrap">
       <div class="compare-grid" style="--compare-columns: ${rankedSelected.length}">
         <div class="compare-cell compare-header">Field</div>
         ${rankedSelected.map((model) => `
           <div class="compare-cell compare-header">
             <span class="model-name">${escapeHtml(model.name)}</span>
-            <span class="model-id">${escapeHtml(model.provider)}</span>
+            <span class="model-id">${escapeHtml(model.provider)} · ${escapeHtml(model.snapshotDate)}</span>
           </div>
         `).join("")}
         ${rows.map((row) => `
           <div class="compare-cell compare-row-head${row.isBandHeader ? " compare-band-head" : ""}">${escapeHtml(row.label)}</div>
           ${rankedSelected.map((model) => {
-            const rank = row.rankByModel?.get(model.id);
+            const rank = row.rankByModel?.get(compareModelKey(model));
             const rankClass = rank ? ` rank-${rank}` : "";
             const rankLabel = rank ? `<span class="rank-badge rank-badge-${rank}">#${rank}</span>` : "";
             const bandClass = row.isBandHeader ? " compare-band-cell" : "";
@@ -471,6 +490,34 @@ function renderCompare(version) {
       </div>
     </div>
   `;
+
+  els.compareList.querySelectorAll("[data-remove-selection]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setModelSelected(button.dataset.removeSelection, false);
+    });
+  });
+}
+
+function selectedCompareModels() {
+  const selected = [];
+
+  for (const version of state.data.versions) {
+    for (const model of version.models) {
+      const compareKey = selectedModelKey(version, model);
+      if (!state.selectedModels.has(compareKey)) {
+        continue;
+      }
+      selected.push({
+        ...model,
+        compareKey,
+        originalId: model.id,
+        snapshotDate: version.date,
+        effectiveDate: version.effectiveDate,
+      });
+    }
+  }
+
+  return selected;
 }
 
 function getItems(model, category) {
@@ -589,6 +636,10 @@ function compareRows(models) {
   ]);
 
   return [
+    {
+      label: "Snapshot date",
+      value: (model) => escapeHtml(model.snapshotDate || "-"),
+    },
     {
       label: "Context window",
       value: (model) => escapeHtml(model.contextWindow || "-"),
@@ -817,13 +868,17 @@ function contextConditionText(item) {
 }
 
 function sortModelsByComparisonScore(models, rows) {
-  const sourceOrder = new Map(models.map((model, index) => [model.id, index]));
+  const sourceOrder = new Map(models.map((model, index) => [compareModelKey(model), index]));
 
   return [...models].sort((left, right) => {
     const leftScore = comparisonScore(left, rows);
     const rightScore = comparisonScore(right, rows);
-    return rightScore - leftScore || sourceOrder.get(left.id) - sourceOrder.get(right.id);
+    return rightScore - leftScore || sourceOrder.get(compareModelKey(left)) - sourceOrder.get(compareModelKey(right));
   });
+}
+
+function compareModelKey(model) {
+  return model.compareKey || model.id;
 }
 
 function comparableCountForBand(models, band, spec) {
@@ -849,7 +904,7 @@ function rankModelsForBand(models, band, spec) {
       previousPrice = entry.price;
     }
     if (rank <= 3) {
-      ranks.set(entry.model.id, rank);
+      ranks.set(compareModelKey(entry.model), rank);
     }
   }
 
@@ -862,7 +917,7 @@ function comparisonScore(model, rows) {
       return result;
     }
 
-    const rank = row.rankByModel?.get(model.id);
+    const rank = row.rankByModel?.get(compareModelKey(model));
     return {
       score: result.score + (rank ? 4 - rank : 0),
       count: result.count + 1,
@@ -870,36 +925,6 @@ function comparisonScore(model, rows) {
   }, { score: 0, count: 0 });
 
   return scored.count ? scored.score / scored.count : 0;
-}
-
-function comparableCount(models, key) {
-  return models.filter((model) => Number.isFinite(convertedPrice(findItemForKey(model, key)))).length;
-}
-
-function rankModels(models, key) {
-  const priced = models
-    .map((model) => {
-      const item = findItemForKey(model, key);
-      const price = convertedPrice(item);
-      return Number.isFinite(price) ? { model, price } : null;
-    })
-    .filter(Boolean)
-    .sort((a, b) => a.price - b.price);
-
-  const ranks = new Map();
-  let rank = 0;
-  let previousPrice = null;
-  for (const entry of priced) {
-    if (previousPrice === null || entry.price !== previousPrice) {
-      rank += 1;
-      previousPrice = entry.price;
-    }
-    if (rank <= 3) {
-      ranks.set(entry.model.id, rank);
-    }
-  }
-
-  return ranks;
 }
 
 function itemKey(item) {

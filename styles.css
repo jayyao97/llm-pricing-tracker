@@ -641,6 +641,38 @@ tbody tr.is-selected td:nth-child(3) {
   margin: 0;
 }
 
+.compare-basket {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.compare-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  padding: 5px 10px 5px 12px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.compare-chip:hover {
+  border-color: var(--muted);
+}
+
+.compare-chip small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .compare-table-wrap {
   overflow-x: auto;
   border: 0;

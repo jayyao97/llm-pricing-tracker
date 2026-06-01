@@ -150,7 +150,7 @@
           "provider": "Anthropic",
           "id": "claude-haiku-4.5",
           "name": "Claude Haiku 4.5",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },
@@ -166,7 +166,7 @@
           "provider": "Google",
           "id": "gemini-3.1-pro-preview",
           "name": "Gemini 3.1 Pro Preview",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://ai.google.dev/gemini-api/docs/pricing"
           },
@@ -184,7 +184,7 @@
           "provider": "Google",
           "id": "gemini-3.5-flash",
           "name": "Gemini 3.5 Flash",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://ai.google.dev/gemini-api/docs/pricing"
           },
@@ -241,7 +241,7 @@
           "provider": "Zhipu",
           "id": "glm-5.1",
           "name": "GLM-5.1",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://open.bigmodel.cn/pricing"
           },
@@ -258,7 +258,7 @@
           "provider": "Zhipu",
           "id": "glm-5-turbo",
           "name": "GLM-5-Turbo",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://open.bigmodel.cn/pricing"
           },
@@ -273,7 +273,7 @@
           "provider": "Alibaba",
           "id": "qwen3-max",
           "name": "Qwen3 Max",
-          "contextWindow": null,
+          "contextWindow": "252k",
           "source": {
             "url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
           },
@@ -320,7 +320,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-pro",
           "name": "Doubao Seed 2.0 Pro",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -343,7 +343,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-lite",
           "name": "Doubao Seed 2.0 Lite",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -366,7 +366,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-mini",
           "name": "Doubao Seed 2.0 Mini",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -589,7 +589,7 @@
           "provider": "Anthropic",
           "id": "claude-haiku-4.5",
           "name": "Claude Haiku 4.5",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },
@@ -605,7 +605,7 @@
           "provider": "Google",
           "id": "gemini-3.1-pro-preview",
           "name": "Gemini 3.1 Pro Preview",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://ai.google.dev/gemini-api/docs/pricing"
           },
@@ -623,7 +623,7 @@
           "provider": "Google",
           "id": "gemini-3.5-flash",
           "name": "Gemini 3.5 Flash",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://ai.google.dev/gemini-api/docs/pricing"
           },
@@ -680,7 +680,7 @@
           "provider": "Zhipu",
           "id": "glm-5.1",
           "name": "GLM-5.1",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://open.bigmodel.cn/pricing"
           },
@@ -697,7 +697,7 @@
           "provider": "Zhipu",
           "id": "glm-5-turbo",
           "name": "GLM-5-Turbo",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://open.bigmodel.cn/pricing"
           },
@@ -712,7 +712,7 @@
           "provider": "Alibaba",
           "id": "qwen3-max",
           "name": "Qwen3 Max",
-          "contextWindow": null,
+          "contextWindow": "252k",
           "source": {
             "url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
           },
@@ -759,7 +759,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-pro",
           "name": "Doubao Seed 2.0 Pro",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -774,7 +774,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-lite",
           "name": "Doubao Seed 2.0 Lite",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -788,7 +788,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-mini",
           "name": "Doubao Seed 2.0 Mini",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -846,7 +846,7 @@
           "provider": "MiniMax",
           "id": "minimax-m2.7",
           "name": "MiniMax M2.7",
-          "contextWindow": null,
+          "contextWindow": "204.8k",
           "source": {
             "url": "https://platform.minimax.io/docs/guides/pricing-paygo"
           },
@@ -861,7 +861,7 @@
           "provider": "MiniMax",
           "id": "minimax-m2.7-highspeed",
           "name": "MiniMax M2.7 Highspeed",
-          "contextWindow": null,
+          "contextWindow": "204.8k",
           "source": {
             "url": "https://platform.minimax.io/docs/guides/pricing-paygo"
           },
@@ -1013,7 +1013,7 @@
           "provider": "Anthropic",
           "id": "claude-haiku-4.5",
           "name": "Claude Haiku 4.5",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://platform.claude.com/docs/en/about-claude/pricing"
           },
@@ -1029,7 +1029,7 @@
           "provider": "Google",
           "id": "gemini-3.1-pro-preview",
           "name": "Gemini 3.1 Pro Preview",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://ai.google.dev/gemini-api/docs/pricing"
           },
@@ -1047,7 +1047,7 @@
           "provider": "Google",
           "id": "gemini-3.5-flash",
           "name": "Gemini 3.5 Flash",
-          "contextWindow": null,
+          "contextWindow": "1M",
           "source": {
             "url": "https://ai.google.dev/gemini-api/docs/pricing"
           },
@@ -1104,7 +1104,7 @@
           "provider": "Zhipu",
           "id": "glm-5.1",
           "name": "GLM-5.1",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://open.bigmodel.cn/pricing"
           },
@@ -1121,7 +1121,7 @@
           "provider": "Zhipu",
           "id": "glm-5-turbo",
           "name": "GLM-5-Turbo",
-          "contextWindow": null,
+          "contextWindow": "200k",
           "source": {
             "url": "https://open.bigmodel.cn/pricing"
           },
@@ -1136,7 +1136,7 @@
           "provider": "Alibaba",
           "id": "qwen3-max",
           "name": "Qwen3 Max",
-          "contextWindow": null,
+          "contextWindow": "252k",
           "source": {
             "url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
           },
@@ -1183,7 +1183,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-pro",
           "name": "Doubao Seed 2.0 Pro",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -1198,7 +1198,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-lite",
           "name": "Doubao Seed 2.0 Lite",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -1212,7 +1212,7 @@
           "provider": "ByteDance",
           "id": "doubao-seed-2.0-mini",
           "name": "Doubao Seed 2.0 Mini",
-          "contextWindow": null,
+          "contextWindow": "256k",
           "source": {
             "url": "https://www.volcengine.com/docs/82379/1544106"
           },
@@ -1270,7 +1270,7 @@
           "provider": "MiniMax",
           "id": "minimax-m2.7",
           "name": "MiniMax M2.7",
-          "contextWindow": null,
+          "contextWindow": "204.8k",
           "source": {
             "url": "https://platform.minimax.io/docs/guides/pricing-paygo"
           },
@@ -1285,7 +1285,7 @@
           "provider": "MiniMax",
           "id": "minimax-m2.7-highspeed",
           "name": "MiniMax M2.7 Highspeed",
-          "contextWindow": null,
+          "contextWindow": "204.8k",
           "source": {
             "url": "https://platform.minimax.io/docs/guides/pricing-paygo"
           },
