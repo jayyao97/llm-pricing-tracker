@@ -326,17 +326,20 @@ function renderRows(version, models) {
     const checked = state.selectedModels.has(selectionKey) ? "checked" : "";
     return `
       <tr class="${checked ? "is-selected" : ""}" data-selection-key="${escapeHtml(selectionKey)}">
-        <td><input class="compare-checkbox" type="checkbox" data-selection-key="${escapeHtml(selectionKey)}" ${checked} aria-label="Select ${escapeHtml(model.name)}"></td>
-        <td>${providerIcon(model)}</td>
-        <td>
+        <td data-label="Compare"><input class="compare-checkbox" type="checkbox" data-selection-key="${escapeHtml(selectionKey)}" ${checked} aria-label="Select ${escapeHtml(model.name)}"></td>
+        <td data-label="Provider">${providerIcon(model)}</td>
+        <td data-label="Model">
           <div class="model-name">${escapeHtml(model.name)}</div>
           <div class="model-id">${escapeHtml(model.id)}</div>
         </td>
-        ${columns.map((column) => `<td class="price-cell">${formatPricingCategory(model, column.category)}</td>`).join("")}
-        <td>${escapeHtml(model.contextWindow || "-")}</td>
-        <td>
+        ${columns.map((column) => `<td class="price-cell" data-label="${escapeHtml(column.label)}">${formatPricingCategory(model, column.category)}</td>`).join("")}
+        <td data-label="Context">${escapeHtml(model.contextWindow || "-")}</td>
+        <td data-label="Source">
           <a class="source-link" href="${escapeHtml(model.source.url)}" rel="noreferrer" target="_blank">Official</a>
           <div class="model-id">${escapeHtml(version.effectiveDate)}</div>
+        </td>
+        <td class="mobile-card-actions">
+          <button class="mobile-details-toggle" type="button" aria-expanded="false">More</button>
         </td>
       </tr>
     `;
@@ -349,6 +352,12 @@ function renderRows(version, models) {
   });
 
   els.rows.querySelectorAll("tr[data-selection-key]").forEach((row) => {
+    const hasExtraDetails = [...row.querySelectorAll(".price-cell")]
+      .some((cell) => cell.querySelectorAll(".price-line").length > 2);
+    row.classList.toggle("has-extra-details", hasExtraDetails);
+  });
+
+  els.rows.querySelectorAll("tr[data-selection-key]").forEach((row) => {
     row.addEventListener("click", (event) => {
       if (event.target.closest("a, button, input, select")) {
         return;
@@ -357,6 +366,15 @@ function renderRows(version, models) {
       const checkbox = row.querySelector("input[type='checkbox']");
       checkbox.checked = !checkbox.checked;
       setModelSelected(row.dataset.selectionKey, checkbox.checked);
+    });
+  });
+
+  els.rows.querySelectorAll(".mobile-details-toggle").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const row = event.target.closest("tr");
+      const isExpanded = row.classList.toggle("is-expanded");
+      event.target.setAttribute("aria-expanded", String(isExpanded));
+      event.target.textContent = isExpanded ? "Less" : "More";
     });
   });
 }
