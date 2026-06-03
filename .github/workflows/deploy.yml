@@ -26,6 +26,12 @@ jobs:
         with:
           node-version: 22
 
+      - name: Build data
+        run: node scripts/build-data.mjs
+
+      - name: Check generated data
+        run: git diff --exit-code data/prices.json
+
       - name: Validate data
         run: node scripts/validate-data.mjs
 

@@ -421,7 +421,7 @@ input[type="checkbox"] {
 
 table {
   width: 100%;
-  min-width: 1240px;
+  min-width: 1360px;
   border-collapse: collapse;
 }
 
@@ -517,6 +517,45 @@ tbody tr:last-child td {
   white-space: nowrap;
 }
 
+.modality-stack {
+  display: grid;
+  gap: 5px;
+  min-width: 126px;
+}
+
+.modality-stack > span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.modality-label {
+  width: 24px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 560;
+}
+
+.modality-icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--soft);
+  background: #090909;
+}
+
+.modality-icon svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  display: block;
+}
+
 .price-cell {
   min-width: 110px;
   color: #f4f7f5;
@@ -549,12 +588,19 @@ th:nth-child(3) {
   min-width: 220px;
 }
 
+td:nth-child(4),
+th:nth-child(4) {
+  min-width: 142px;
+}
+
 th:nth-child(1),
 td:nth-child(1),
 th:nth-child(2),
 td:nth-child(2),
 th:nth-child(3),
-td:nth-child(3) {
+td:nth-child(3),
+th:nth-child(4),
+td:nth-child(4) {
   position: sticky;
   background: var(--bg);
 }
@@ -578,26 +624,39 @@ td:nth-child(2) {
 th:nth-child(3),
 td:nth-child(3) {
   left: 182px;
+  width: 220px;
+  min-width: 220px;
+  z-index: 4;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  left: 402px;
+  width: 142px;
+  min-width: 142px;
   z-index: 4;
   box-shadow: 1px 0 0 var(--line);
 }
 
 th:nth-child(1),
 th:nth-child(2),
-th:nth-child(3) {
+th:nth-child(3),
+th:nth-child(4) {
   background: var(--bg);
   z-index: 7;
 }
 
 tbody tr:hover td:nth-child(1),
 tbody tr:hover td:nth-child(2),
-tbody tr:hover td:nth-child(3) {
+tbody tr:hover td:nth-child(3),
+tbody tr:hover td:nth-child(4) {
   background: #080808;
 }
 
 tbody tr.is-selected td:nth-child(1),
 tbody tr.is-selected td:nth-child(2),
-tbody tr.is-selected td:nth-child(3) {
+tbody tr.is-selected td:nth-child(3),
+tbody tr.is-selected td:nth-child(4) {
   background: #0d0d0d;
 }
 
@@ -648,6 +707,27 @@ tbody tr.is-selected td:nth-child(3) {
 
 .compare:has(.empty) {
   padding: 0;
+}
+
+.site-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-underline-offset: 3px;
+}
+
+.site-footer a:hover {
+  color: var(--ink);
 }
 
 .section-head {
@@ -767,7 +847,7 @@ tbody tr.is-selected td:nth-child(3) {
 }
 
 .floating-header table {
-  min-width: 1240px;
+  min-width: 1360px;
   table-layout: fixed;
 }
 
@@ -1065,9 +1145,11 @@ tbody tr.is-selected td:nth-child(3) {
   tbody tr:hover td:nth-child(1),
   tbody tr:hover td:nth-child(2),
   tbody tr:hover td:nth-child(3),
+  tbody tr:hover td:nth-child(4),
   tbody tr.is-selected td:nth-child(1),
   tbody tr.is-selected td:nth-child(2),
-  tbody tr.is-selected td:nth-child(3) {
+  tbody tr.is-selected td:nth-child(3),
+  tbody tr.is-selected td:nth-child(4) {
     background: transparent;
   }
 
@@ -1083,6 +1165,8 @@ tbody tr.is-selected td:nth-child(3) {
   td:nth-child(2),
   th:nth-child(3),
   td:nth-child(3),
+  th:nth-child(4),
+  td:nth-child(4),
   .compare-grid > .compare-header:first-child,
   .compare-row-head {
     position: static;
@@ -1100,10 +1184,17 @@ tbody tr.is-selected td:nth-child(3) {
 
   td:nth-child(3) {
     grid-column: 3;
+    grid-row: 1;
     align-self: center;
   }
 
-  td[data-label]:nth-child(n + 4) {
+  td:nth-child(4) {
+    grid-column: 3;
+    grid-row: 2;
+    align-self: end;
+  }
+
+  td[data-label]:nth-child(n + 5) {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 82px minmax(0, 1fr);
@@ -1113,7 +1204,7 @@ tbody tr.is-selected td:nth-child(3) {
     padding-top: 10px;
   }
 
-  td[data-label]:nth-child(n + 4)::before {
+  td[data-label]:nth-child(n + 5)::before {
     color: var(--muted);
     content: attr(data-label);
     font-size: 12px;
@@ -1169,6 +1260,30 @@ tbody tr.is-selected td:nth-child(3) {
     font-size: 12px;
   }
 
+  .modality-stack {
+    min-width: 0;
+    gap: 4px;
+  }
+
+  .modality-stack > span {
+    gap: 3px;
+  }
+
+  .modality-label {
+    width: 22px;
+    font-size: 10px;
+  }
+
+  .modality-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .modality-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
   .provider-icon {
     width: 28px;
     height: 28px;
@@ -1185,7 +1300,7 @@ tbody tr.is-selected td:nth-child(3) {
   }
 
   .price-cell:empty,
-  td[data-label]:nth-child(n + 4):has(.empty) {
+  td[data-label]:nth-child(n + 5):has(.empty) {
     display: none;
   }
 

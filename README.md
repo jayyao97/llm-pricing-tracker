@@ -11,7 +11,12 @@ A static LLM API pricing tracker. The page reads from `data/prices.json`, displa
 ├── src/
 │   └── app.js
 ├── data/
-│   └── prices.json
+│   ├── meta.json
+│   ├── prices.json
+│   └── snapshots/
+│       └── YYYY/
+│           └── MM/
+│               └── YYYY-MM-DD.json
 ├── assets/
 │   ├── favicon.svg
 │   └── providers/
@@ -41,7 +46,7 @@ Do not open `index.html` directly from Finder or a `file://` URL. The page fetch
 
 Recommended: Cloudflare Pages direct upload from GitHub Actions.
 
-This project is a public static site with no build step. GitHub Actions deploys the repository root to the Cloudflare Pages project `openllmprices` after every push to `master`, so Cloudflare does not need GitHub App access to the repository.
+This project is a public static site. GitHub Actions builds the generated dataset and deploys the repository root to the Cloudflare Pages project `openllmprices` after every push to `master`, so Cloudflare does not need GitHub App access to the repository.
 
 One-time Cloudflare setup:
 
@@ -59,6 +64,7 @@ The `_headers` file keeps `/`, `index.html`, and `data/prices.json` revalidated.
 Before pushing a release, run:
 
 ```bash
+node scripts/build-data.mjs
 node scripts/validate-data.mjs
 node --check src/app.js
 ```
@@ -67,14 +73,16 @@ When changing `styles.css` or `src/app.js`, bump the query version in `index.htm
 
 ## Updating Prices
 
-1. Add a new date snapshot at the top of `versions` in `data/prices.json`.
+1. Add or update a snapshot in `data/snapshots/YYYY/MM/YYYY-MM-DD.json`.
 2. Keep an official source URL for every model price.
-3. Run validation:
+3. Rebuild the generated dataset.
+4. Run validation:
 
 ```bash
+node scripts/build-data.mjs
 node scripts/validate-data.mjs
 ```
 
-The default unit is USD / 1M tokens. Use `pricingItems` for each distinct billable rule, including context tiers, cache read/write pricing, cache storage duration, and modality-specific pricing.
+The default unit is USD / 1M tokens. Use `modalities` for model input/output capabilities, `modalities.documents` for direct document inputs such as PDF, and `pricingItems` for each distinct billable rule, including context tiers, cache read/write pricing, cache storage duration, and modality-specific pricing.
 
 The date selector only lists dates that have snapshots. If a URL requests a date that does not exist, the app falls back to the latest snapshot on or before that date, or the earliest snapshot if the requested date predates the dataset.

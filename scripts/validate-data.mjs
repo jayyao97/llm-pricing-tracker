@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 
 const data = JSON.parse(await readFile(new URL("../data/prices.json", import.meta.url), "utf8"));
 
-assert(data.schemaVersion === 2, "schemaVersion must be 2");
+assert(data.schemaVersion === 4, "schemaVersion must be 4");
 assertCurrency(data.currency, "currency");
 if (data.exchangeRate !== undefined) {
   assert(typeof data.exchangeRate === "object" && data.exchangeRate !== null, "exchangeRate must be an object");
@@ -37,6 +37,7 @@ for (const version of data.versions) {
     ids.add(model.id);
     assert(typeof model.name === "string" && model.name.length > 0, `model.name required for ${model.id}`);
     assert(model.contextWindow === null || typeof model.contextWindow === "string", `invalid contextWindow for ${model.id}`);
+    assertModalities(model.modalities, `modalities for ${model.id}`);
     assert(Array.isArray(model.pricingItems) && model.pricingItems.length > 0, `pricingItems required for ${model.id}`);
     for (const item of model.pricingItems) {
       assert(typeof item.category === "string" && item.category.length > 0, `pricingItems.category required for ${model.id}`);
@@ -78,4 +79,21 @@ function assertPrice(value, label) {
 
 function assertCurrency(value, label) {
   assert(typeof value === "string" && /^[A-Z]{3}$/.test(value), `${label} must be an ISO currency code`);
+}
+
+function assertModalities(value, label) {
+  const allowed = new Set(["text", "image", "audio", "video", "embedding", "speech"]);
+  const allowedDocuments = new Set(["pdf"]);
+  assert(typeof value === "object" && value !== null, `${label} must be an object`);
+  assert(Array.isArray(value.input) && value.input.length > 0, `${label}.input must not be empty`);
+  assert(Array.isArray(value.output) && value.output.length > 0, `${label}.output must not be empty`);
+  for (const modality of [...value.input, ...value.output]) {
+    assert(allowed.has(modality), `${label} has unsupported modality: ${modality}`);
+  }
+  if (value.documents !== undefined) {
+    assert(Array.isArray(value.documents), `${label}.documents must be an array`);
+    for (const documentType of value.documents) {
+      assert(allowedDocuments.has(documentType), `${label} has unsupported document input: ${documentType}`);
+    }
+  }
 }

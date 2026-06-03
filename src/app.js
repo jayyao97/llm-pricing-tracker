@@ -41,7 +41,7 @@ async function init() {
     throw new Error("Open this project through a local HTTP server or a static host. Browsers block JSON fetches from file:// pages.");
   }
 
-  const response = await fetch("data/prices.json");
+  const response = await fetch("data/prices.json", { cache: "no-cache" });
   state.data = await response.json();
   state.selectedVersion = resolveVersionDate(new URLSearchParams(window.location.search).get("date"));
   state.exchange.usdCny = state.data.exchangeRate?.usdCny || state.exchange.usdCny;
@@ -253,12 +253,61 @@ function metric(label, value) {
   return `<div class="metric"><span>${label}</span><strong>${escapeHtml(String(value))}</strong></div>`;
 }
 
+function formatModalities(model) {
+  const modalities = model.modalities || {};
+  const input = modalities.input || [];
+  const output = modalities.output || [];
+  const documents = modalities.documents || [];
+  return `
+    <div class="modality-stack" aria-label="Input: ${escapeHtml(input.join(", "))}; Documents: ${escapeHtml(documents.join(", "))}; Output: ${escapeHtml(output.join(", "))}">
+      <span>${formatModalityGroup("In", input)}</span>
+      ${documents.length ? `<span>${formatModalityGroup("Doc", documents)}</span>` : ""}
+      <span>${formatModalityGroup("Out", output)}</span>
+    </div>
+  `;
+}
+
+function formatModalityGroup(label, modalities) {
+  const chips = modalities.map((modality) => `
+    <span class="modality-icon" title="${escapeHtml(modalityLabel(modality))}" aria-label="${escapeHtml(modalityLabel(modality))}">
+      ${modalityIcon(modality)}
+    </span>
+  `).join("");
+  return `<span class="modality-label">${label}</span>${chips || '<span class="price-note">-</span>'}`;
+}
+
+function modalityLabel(modality) {
+  return {
+    text: "Text",
+    image: "Image",
+    audio: "Audio",
+    video: "Video",
+    embedding: "Embed",
+    speech: "Speech",
+    pdf: "PDF",
+  }[modality] || modality;
+}
+
+function modalityIcon(modality) {
+  const icons = {
+    text: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3h10v2H9v8H7V5H3z"></path></svg>',
+    image: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v10H2zM4 11h8L9.4 8.7 7.5 10 6 8zM10.8 6.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z"></path></svg>',
+    audio: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 9h2l2.5 2V5L4 7H2zm9.4 2.8-1.1-1.1a3.8 3.8 0 0 0 0-5.4l1.1-1.1a5.4 5.4 0 0 1 0 7.6zM9.2 9.5 8.1 8.4a1.8 1.8 0 0 0 0-.8l1.1-1.1a3.3 3.3 0 0 1 0 3z"></path></svg>',
+    video: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h8.5v8H2zm9.5 2.5L14 5v6l-2.5-1.5z"></path></svg>',
+    embedding: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3h4v4H3zm6 0h4v4H9zM3 9h4v4H3zm6 0h4v4H9z"></path></svg>',
+    speech: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10v7H8l-3 2v-2H3z"></path></svg>',
+    pdf: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1h6l3 3v11H4zM9 2.7V5h2.3z"></path><path d="M5.6 11.8V8.2h1.3c.8 0 1.3.4 1.3 1.1s-.5 1.1-1.3 1.1h-.4v1.4zm.9-2.1h.3c.3 0 .5-.1.5-.4s-.2-.4-.5-.4h-.3zm2.2 2.1V8.2h1.2c1.1 0 1.8.6 1.8 1.8s-.7 1.8-1.8 1.8zm.9-.7h.3c.6 0 .9-.3.9-1.1s-.3-1.1-.9-1.1h-.3z"></path></svg>',
+  };
+  return icons[modality] || escapeHtml(modality);
+}
+
 function renderHeader(version) {
   const columns = catalogColumns(version.models);
   els.header.innerHTML = [
     '<th scope="col">Compare</th>',
     sortableHeader("Provider", "provider"),
     sortableHeader("Model", "model"),
+    '<th scope="col">Modalities</th>',
     ...columns.map((column) => `
       <th scope="col">
         <button class="sort-button" type="button" data-sort-key="category:${escapeHtml(column.category)}">
@@ -317,7 +366,7 @@ function renderRows(version, models) {
   els.rowCount.textContent = `${models.length} models`;
 
   if (models.length === 0) {
-    els.rows.innerHTML = `<tr><td colspan="${columns.length + 5}" class="empty">No matching models.</td></tr>`;
+    els.rows.innerHTML = `<tr><td colspan="${columns.length + 6}" class="empty">No matching models.</td></tr>`;
     return;
   }
 
@@ -332,6 +381,7 @@ function renderRows(version, models) {
           <div class="model-name">${escapeHtml(model.name)}</div>
           <div class="model-id">${escapeHtml(model.id)}</div>
         </td>
+        <td data-label="Modalities">${formatModalities(model)}</td>
         ${columns.map((column) => `<td class="price-cell" data-label="${escapeHtml(column.label)}">${formatPricingCategory(model, column.category)}</td>`).join("")}
         <td data-label="Context">${escapeHtml(model.contextWindow || "-")}</td>
         <td data-label="Source">
@@ -802,6 +852,10 @@ function compareRows(models) {
     {
       label: "Context window",
       value: (model) => escapeHtml(model.contextWindow || "-"),
+    },
+    {
+      label: "Modalities",
+      value: (model) => formatModalities(model),
     },
     ...priceRows,
     {
