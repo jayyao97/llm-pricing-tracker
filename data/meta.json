@@ -4,8 +4,8 @@
   "unit": "per 1M tokens",
   "exchangeRate": {
     "pair": "USD/CNY",
-    "usdCny": 6.772555,
+    "usdCny": 6.793402,
     "source": "https://open.er-api.com/v6/latest/USD",
-    "updatedAt": "2026-06-01"
+    "updatedAt": "2026-06-08"
   }
 }
