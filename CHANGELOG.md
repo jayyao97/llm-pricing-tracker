@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-08
+
+- Updated MiniMax M3 pricing for input above 512k tokens: input 1.2 to 0.6, output 4.8 to 2.4, and prompt-cache read 0.24 to 0.12 USD per 1M tokens, as the official page now applies the permanent 50% discount to this tier.
+- Left the MiniMax M3 input-at-or-below-512k tier unchanged (0.3/1.2/0.06); its discount is now noted as permanent.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Zhipu, Alibaba, ByteDance, Kimi, and Xiaomi against their official pricing pages; no other tracked price changes were applied.
+- Updated the default USD/CNY rate to 6.793402 from ExchangeRate-API.
+
 ## 2026-06-01
 
 - Added a new pricing snapshot for MiniMax M3 with 1M context support.
