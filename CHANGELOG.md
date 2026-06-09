@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-09
+
+- Corrected MiMo V2.5 input modalities to text, image, audio, and video; Xiaomi's official documentation describes V2.5 as natively multimodal (the successor to MiMo-V2-Omni).
+- Left MiMo V2.5 Pro unchanged as text-only, matching its role as the long-range reasoning model.
+- No price changes; this is a metadata correction only.
+
 ## 2026-06-08
 
 - Updated MiniMax M3 pricing for input above 512k tokens: input 1.2 to 0.6, output 4.8 to 2.4, and prompt-cache read 0.24 to 0.12 USD per 1M tokens, as the official page now applies the permanent 50% discount to this tier.

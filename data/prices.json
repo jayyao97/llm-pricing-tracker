@@ -12,7 +12,7 @@
     {
       "date": "2026-06-08",
       "effectiveDate": "2026-06-08",
-      "notes": "Updated MiniMax M3 pricing for inputs above 512k tokens: the official MiniMax pay-as-you-go page now applies the permanent 50% discount to this tier, halving input to 0.6, output to 2.4, and prompt-cache read to 0.12 USD per 1M tokens. The at-or-below-512k tier is unchanged at 0.3/1.2/0.06 (its discount is now described as permanent). Re-checked all other tracked providers (OpenAI, Anthropic, Google, DeepSeek, xAI, Zhipu, Alibaba, ByteDance, Kimi, Xiaomi) against their official pricing pages; their prices are unchanged and carried forward.",
+      "notes": "Updated MiniMax M3 pricing for inputs above 512k tokens: the official MiniMax pay-as-you-go page now applies the permanent 50% discount to this tier, halving input to 0.6, output to 2.4, and prompt-cache read to 0.12 USD per 1M tokens. The at-or-below-512k tier is unchanged at 0.3/1.2/0.06 (its discount is now described as permanent). Re-checked all other tracked providers (OpenAI, Anthropic, Google, DeepSeek, xAI, Zhipu, Alibaba, ByteDance, Kimi, Xiaomi) against their official pricing pages; their prices are unchanged and carried forward. Corrected MiMo V2.5 input modalities to text, image, audio, and video per Xiaomi's official platform documentation, which describes V2.5 as natively multimodal (successor to MiMo-V2-Omni); MiMo V2.5 Pro remains text-only. No prices changed.",
       "sources": [
         {
           "provider": "OpenAI",
@@ -1739,7 +1739,10 @@
           "contextWindow": "1M",
           "modalities": {
             "input": [
-              "text"
+              "text",
+              "image",
+              "audio",
+              "video"
             ],
             "output": [
               "text"
