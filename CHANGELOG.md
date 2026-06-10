@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-10
+
+- Added Claude Fable 5 (claude-fable-5), Anthropic's new most-capable widely released model, generally available on the Claude API from 2026-06-09: input 10, 5m cache write 12.5, 1h cache write 20, cache hit 1, output 50 USD per 1M tokens, 1M context, text+image input.
+- Did not track Claude Mythos 5, which Anthropic announced the same day but offers only as invitation-only (Project Glasswing, not generally available).
+- Rechecked OpenAI, Google, DeepSeek, xAI, Zhipu, Alibaba, ByteDance, Kimi, MiniMax, and Xiaomi against their official pricing pages; no other tracked price or lineup changes.
+- Updated the default USD/CNY rate to 6.785295 from ExchangeRate-API.
+
 ## 2026-06-09
 
 - Corrected MiMo V2.5 input modalities to text, image, audio, and video; Xiaomi's official documentation describes V2.5 as natively multimodal (the successor to MiMo-V2-Omni).
