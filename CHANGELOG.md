@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-12
+
+- Added Kimi K2.7 Code (kimi-k2.7-code), the newest model in Kimi's K2 line, generally available on the Kimi platform: input cache miss 0.95, input cache hit 0.19, output 4 USD per 1M tokens, 262k context, text/image/video input.
+- Left Kimi K2.6 in place; it is still offered on the official pricing docs.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Zhipu, Alibaba, ByteDance, MiniMax, and Xiaomi against their official pricing pages; no other tracked price or lineup changes.
+- Updated the default USD/CNY rate to 6.787632 from ExchangeRate-API.
+
 ## 2026-06-10
 
 - Added Claude Fable 5 (claude-fable-5), Anthropic's new most-capable widely released model, generally available on the Claude API from 2026-06-09: input 10, 5m cache write 12.5, 1h cache write 20, cache hit 1, output 50 USD per 1M tokens, 1M context, text+image input.
