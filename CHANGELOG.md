@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-06-15
+
+- Refreshed Alibaba's Qwen flagship lineup to its current generation; prior snapshots had fallen behind and missed the 3.6/3.7 releases. All three now have a 1M context window (USD International pay-as-you-go pricing from the official Model Studio table):
+  - Qwen3 Max -> Qwen3.7 Max (qwen3.7-max, = qwen3.7-max-2026-05-20): input 2.5, output 7.5 per 1M tokens (single 0-1M tier), text-only.
+  - Qwen3.5 Plus -> Qwen3.7 Plus (qwen3.7-plus, = qwen3.7-plus-2026-05-26): input 0.4 / output 1.6 (<=256K), input 1.2 / output 4.8 (256K-1M), text/image/video.
+  - Qwen3.5 Flash -> Qwen3.6 Flash (qwen3.6-flash, = qwen3.6-flash-2026-04-16): input 0.25 / output 1.5 (<=256K), input 1 / output 4 (256K-1M), text/image/video. No Qwen3.7 Flash exists yet.
+- Did not add Anthropic's Claude Mythos 5 (still limited-availability, not generally available) or Zhipu's GLM-5.2 (still not on the pay-as-you-go page).
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Zhipu, ByteDance, Kimi, MiniMax, and Xiaomi against their official pricing pages; no other tracked price or lineup changes.
+- Updated the default USD/CNY rate to 6.769141 from ExchangeRate-API.
+
 ## 2026-06-12
 
 - Added Kimi K2.7 Code (kimi-k2.7-code), the newest model in Kimi's K2 line, generally available on the Kimi platform: input cache miss 0.95, input cache hit 0.19, output 4 USD per 1M tokens, 262k context, text/image/video input.
