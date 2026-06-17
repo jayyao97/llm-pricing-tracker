@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-17
+
+- Added Zhipu's GLM-5.2 (glm-5.2), its new long-task flagship, now listed on the official BigModel pay-as-you-go pricing page (previously subscription-only). Text model, 1M context window: input 8, output 28, cache hit 2 CNY per 1M tokens (single 0-1M tier; cache storage limited-time free).
+- Left GLM-5.1 and GLM-5-Turbo in place; both are still offered on the pay-as-you-go page with unchanged prices.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Alibaba, ByteDance, Kimi, MiniMax, and Xiaomi against their official pricing pages; no other tracked price or lineup changes (Anthropic's Claude Mythos 5 is still limited-availability; no Qwen3.8/Qwen3.7 Flash; no Gemini 3.6/4.x).
+- Updated the default USD/CNY rate to 6.769763 from ExchangeRate-API.
+
 ## 2026-06-15
 
 - Refreshed Alibaba's Qwen flagship lineup to its current generation; prior snapshots had fallen behind and missed the 3.6/3.7 releases. All three now have a 1M context window (USD International pay-as-you-go pricing from the official Model Studio table):
