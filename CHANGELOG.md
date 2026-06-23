@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-06-23
+
+- ByteDance launched the new-generation Doubao Seed 2.1 series on the Volcengine Ark standard pay-as-you-go (标准按量付费) table. Added two models (256k context window, text/image/video understanding, no audio):
+  - Doubao Seed 2.1 Pro (doubao-seed-2.1-pro): new flagship Coding & Agent model. Single 0-256k tier: input 6, cache hit 1.2, cache storage 0.017 CNY/1M/hour, output 30 CNY per 1M tokens.
+  - Doubao Seed 2.1 Turbo (doubao-seed-2.1-turbo): scaled-production tier. Input 3, cache hit 0.6, cache storage 0.017 CNY/1M/hour, output 15 CNY per 1M tokens.
+- Removed Doubao Seed 2.0 Pro (doubao-seed-2.0-pro), superseded by Seed 2.1 Pro as the flagship (Seed 2.0 is now the previous generation). Kept Doubao Seed 2.0 Lite and Mini (still GA on the page, prices unchanged, no Seed 2.1 lite/mini equivalent yet).
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Zhipu, Alibaba, Kimi, MiniMax, and Xiaomi against their official pricing pages; no other tracked price or lineup changes (no GPT-5.6/6; Claude Mythos 5 still limited-availability; no Gemini 3.6/4.x; no Qwen3.8/Qwen3.7 Flash).
+- Updated the default USD/CNY rate to 6.786919 from ExchangeRate-API.
+
 ## 2026-06-17
 
 - Added Zhipu's GLM-5.2 (glm-5.2), its new long-task flagship, now listed on the official BigModel pay-as-you-go pricing page (previously subscription-only). Text model, 1M context window: input 8, output 28, cache hit 2 CNY per 1M tokens (single 0-1M tier; cache storage limited-time free).
