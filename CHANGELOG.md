@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-29
+
+- Added xAI's Grok 4.20 reasoning model (grok-4.20-0309-reasoning), now listed on the official Chat API pricing table: 1M context, input 1.25, cached input 0.20, output 2.50 USD per 1M tokens.
+- Kept Grok 4.3 because it remains listed on the xAI pricing page with unchanged pricing.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, Zhipu, Alibaba, ByteDance, Kimi, MiniMax, and Xiaomi against their official pricing pages; no other tracked price or lineup changes (no GPT-5.6/6; Claude Mythos 5 still limited-availability; no Gemini 3.6/4.x; no Qwen3.8/Qwen3.7 Flash).
+- Updated the default USD/CNY rate to 6.803731 from ExchangeRate-API.
+
 ## 2026-06-23
 
 - ByteDance launched the new-generation Doubao Seed 2.1 series on the Volcengine Ark standard pay-as-you-go (标准按量付费) table. Added two models (256k context window, text/image/video understanding, no audio):
