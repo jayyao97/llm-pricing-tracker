@@ -1,7 +1,7 @@
 {
   "date": "2026-06-30",
   "effectiveDate": "2026-06-30",
-  "notes": "ByteDance: added Doubao Seed Evolving (doubao-seed-evolving), a generally available Seed 2.1 Evolving model ID for Coding, office, and productivity scenarios. The official Volcengine Seed 2.1 page describes it as an ability-first model ID that calls the strongest version, updates weekly, and currently matches doubao-seed-2.1-pro; the standard pay-as-you-go pricing table lists it at the same 0-256k tier as Seed 2.1 Pro: input 6 CNY, cache hit 1.2 CNY, cache storage 0.017 CNY/1M/hour, output 30 CNY per 1M tokens. Re-checked all tracked providers against their official pricing pages: OpenAI GPT-5.5/5.5 Pro (no GPT-5.6/6), Anthropic (Fable 5, Opus 4.8, Sonnet 4.6, Haiku 4.5; Mythos 5 still limited-availability), Google (Gemini 3.1 Pro Preview, 3.5 Flash; no 3.6/4.x), DeepSeek V4 Pro/Flash, xAI Grok 4.3, Zhipu GLM-5.2/5.1/5-Turbo, Alibaba (Qwen3.7 Max/Plus, Qwen3.6 Flash; no Qwen3.8 or Qwen3.7 Flash), Kimi K2.6/K2.7 Code, MiniMax M3, and Xiaomi MiMo V2.5/Pro all unchanged and carried forward. Updated the default USD/CNY rate from ExchangeRate-API.",
+  "notes": "LongCat: added Meituan LongCat-2.0 (longcat-2.0), currently the only LongCat API pay-as-you-go model listed on the official LongCat pricing page. Text model, 1M context window: limited-time discounted pricing is input cache miss 0.30, cache hit 0.006, output 1.20 USD per 1M tokens (official list prices: 0.75 / 0.015 / 2.95). ByteDance: added Doubao Seed Evolving (doubao-seed-evolving), a generally available Seed 2.1 Evolving model ID for Coding, office, and productivity scenarios. The official Volcengine Seed 2.1 page describes it as an ability-first model ID that calls the strongest version, updates weekly, and currently matches doubao-seed-2.1-pro; the standard pay-as-you-go pricing table lists it at the same 0-256k tier as Seed 2.1 Pro: input 6 CNY, cache hit 1.2 CNY, cache storage 0.017 CNY/1M/hour, output 30 CNY per 1M tokens. Re-checked all tracked providers against their official pricing pages: OpenAI GPT-5.5/5.5 Pro (no GPT-5.6/6), Anthropic (Fable 5, Opus 4.8, Sonnet 4.6, Haiku 4.5; Mythos 5 still limited-availability), Google (Gemini 3.1 Pro Preview, 3.5 Flash; no 3.6/4.x), DeepSeek V4 Pro/Flash, xAI Grok 4.3, Zhipu GLM-5.2/5.1/5-Turbo, Alibaba (Qwen3.7 Max/Plus, Qwen3.6 Flash; no Qwen3.8 or Qwen3.7 Flash), Kimi K2.6/K2.7 Code, MiniMax M3, and Xiaomi MiMo V2.5/Pro all unchanged and carried forward. Updated the default USD/CNY rate from ExchangeRate-API.",
   "sources": [
     {
       "provider": "OpenAI",
@@ -67,6 +67,12 @@
       "provider": "Xiaomi",
       "title": "Xiaomi MiMo Pay-As-You-Go API Pricing",
       "url": "https://platform.xiaomimimo.com/docs/en-US/price/pay-as-you-go",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "LongCat",
+      "title": "LongCat API Pay-As-You-Go",
+      "url": "https://longcat.chat/platform/docs/APIPayAsYouGo.html",
       "accessedAt": "2026-06-30"
     }
   ],
@@ -2118,6 +2124,58 @@
             "contextRange": "input > 512k tokens",
             "cacheDuration": null,
             "note": "Permanent 50% off"
+          }
+        }
+      ]
+    },
+    {
+      "provider": "LongCat",
+      "id": "longcat-2.0",
+      "name": "LongCat-2.0",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://longcat.chat/platform/docs/APIPayAsYouGo.html"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Uncached input",
+          "price": 0.3,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": "limited-time discounted price; official list price $0.75"
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cached input",
+          "price": 0.006,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": "limited-time discounted price; official list price $0.015"
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 1.2,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": "limited-time discounted price; official list price $2.95"
           }
         }
       ]

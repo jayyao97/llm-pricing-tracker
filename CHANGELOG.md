@@ -2,6 +2,7 @@
 
 ## 2026-06-30
 
+- Added Meituan LongCat-2.0 (longcat-2.0), currently the only LongCat API pay-as-you-go model listed on the official LongCat pricing page: input cache miss 0.30, cache hit 0.006, output 1.20 USD per 1M tokens at the limited-time discounted rate (official list prices: 0.75 / 0.015 / 2.95), with a 1M context window.
 - Added ByteDance's Doubao Seed Evolving (doubao-seed-evolving), a generally available Seed 2.1 Evolving model ID that calls the strongest version and currently maps to Seed 2.1 Pro. Standard Volcengine Ark pay-as-you-go pricing: input 6, cache hit 1.2, cache storage 0.017 CNY/1M/hour, output 30 CNY per 1M tokens.
 - Left Doubao Seed 2.1 Pro, Seed 2.1 Turbo, Seed 2.0 Lite, and Seed 2.0 Mini in place; their standard pay-as-you-go prices are unchanged.
 - Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Zhipu, Alibaba, Kimi, MiniMax, and Xiaomi against their official pricing pages; no other tracked price or lineup changes.

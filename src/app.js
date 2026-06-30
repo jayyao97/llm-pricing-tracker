@@ -484,6 +484,11 @@ function providerIcon(model) {
       className: "provider-kimi",
       label: "Kimi",
     },
+    LongCat: {
+      src: "assets/providers/longcat.png",
+      className: "provider-longcat",
+      label: "LongCat",
+    },
     MiniMax: {
       src: "assets/providers/minimax.ico",
       className: "provider-minimax",

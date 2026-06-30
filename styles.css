@@ -511,6 +511,11 @@ tbody tr:last-child td {
   filter: invert(1);
 }
 
+.provider-longcat img {
+  width: 28px;
+  height: 28px;
+}
+
 .provider-name {
   color: var(--muted);
   font-size: 13px;
