@@ -1,0 +1,2126 @@
+{
+  "date": "2026-06-30",
+  "effectiveDate": "2026-06-30",
+  "notes": "ByteDance: added Doubao Seed Evolving (doubao-seed-evolving), a generally available Seed 2.1 Evolving model ID for Coding, office, and productivity scenarios. The official Volcengine Seed 2.1 page describes it as an ability-first model ID that calls the strongest version, updates weekly, and currently matches doubao-seed-2.1-pro; the standard pay-as-you-go pricing table lists it at the same 0-256k tier as Seed 2.1 Pro: input 6 CNY, cache hit 1.2 CNY, cache storage 0.017 CNY/1M/hour, output 30 CNY per 1M tokens. Re-checked all tracked providers against their official pricing pages: OpenAI GPT-5.5/5.5 Pro (no GPT-5.6/6), Anthropic (Fable 5, Opus 4.8, Sonnet 4.6, Haiku 4.5; Mythos 5 still limited-availability), Google (Gemini 3.1 Pro Preview, 3.5 Flash; no 3.6/4.x), DeepSeek V4 Pro/Flash, xAI Grok 4.3, Zhipu GLM-5.2/5.1/5-Turbo, Alibaba (Qwen3.7 Max/Plus, Qwen3.6 Flash; no Qwen3.8 or Qwen3.7 Flash), Kimi K2.6/K2.7 Code, MiniMax M3, and Xiaomi MiMo V2.5/Pro all unchanged and carried forward. Updated the default USD/CNY rate from ExchangeRate-API.",
+  "sources": [
+    {
+      "provider": "OpenAI",
+      "title": "OpenAI API Pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "Anthropic",
+      "title": "Claude API Pricing",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "Google",
+      "title": "Gemini Developer API Pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "DeepSeek",
+      "title": "DeepSeek Models & Pricing",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "xAI",
+      "title": "xAI Pricing",
+      "url": "https://docs.x.ai/developers/pricing",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "Zhipu",
+      "title": "BigModel Pricing",
+      "url": "https://open.bigmodel.cn/pricing",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "Alibaba",
+      "title": "Alibaba Cloud Model Studio Pricing",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "ByteDance",
+      "title": "Volcengine Ark Pricing",
+      "url": "https://www.volcengine.com/docs/82379/1544106",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "Kimi",
+      "title": "Kimi K2.6 Pricing",
+      "url": "https://platform.kimi.ai/docs/pricing/chat-k26",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "MiniMax",
+      "title": "MiniMax Pay-as-you-go Pricing",
+      "url": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "accessedAt": "2026-06-30"
+    },
+    {
+      "provider": "Xiaomi",
+      "title": "Xiaomi MiMo Pay-As-You-Go API Pricing",
+      "url": "https://platform.xiaomimimo.com/docs/en-US/price/pay-as-you-go",
+      "accessedAt": "2026-06-30"
+    }
+  ],
+  "models": [
+    {
+      "provider": "OpenAI",
+      "id": "gpt-5.5",
+      "name": "GPT-5.5",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 272k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cached input",
+          "price": 0.5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 272k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 30,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 272k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 10,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input > 272k tokens",
+            "cacheDuration": null,
+            "note": "priced for the full session"
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cached input",
+          "price": 1,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input > 272k tokens",
+            "cacheDuration": null,
+            "note": "priced for the full session"
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 45,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input > 272k tokens",
+            "cacheDuration": null,
+            "note": "priced for the full session"
+          }
+        }
+      ]
+    },
+    {
+      "provider": "OpenAI",
+      "id": "gpt-5.5-pro",
+      "name": "GPT-5.5 Pro",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 30,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 272k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 180,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 272k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 60,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input > 272k tokens",
+            "cacheDuration": null,
+            "note": "priced for the full session"
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 270,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input > 272k tokens",
+            "cacheDuration": null,
+            "note": "priced for the full session"
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Anthropic",
+      "id": "claude-fable-5",
+      "name": "Claude Fable 5",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 10,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 12.5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "5m",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 20,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 1,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 50,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Anthropic",
+      "id": "claude-opus-4.8",
+      "name": "Claude Opus 4.8",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 6.25,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "5m",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 10,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 25,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Anthropic",
+      "id": "claude-sonnet-4.6",
+      "name": "Claude Sonnet 4.6",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 3,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 3.75,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "5m",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 6,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.3,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 15,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Anthropic",
+      "id": "claude-haiku-4.5",
+      "name": "Claude Haiku 4.5",
+      "contextWindow": "200k",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 1,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 1.25,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "5m",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 2,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.1,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Google",
+      "id": "gemini-3.1-pro-preview",
+      "name": "Gemini 3.1 Pro Preview",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "audio",
+          "video"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://ai.google.dev/gemini-api/docs/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 2,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt <= 200k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 4,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt > 200k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cached input",
+          "price": 0.2,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt <= 200k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cached input",
+          "price": 0.4,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt > 200k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 4.5,
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 12,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt <= 200k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 18,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt > 200k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Google",
+      "id": "gemini-3.5-flash",
+      "name": "Gemini 3.5 Flash",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "audio",
+          "video"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://ai.google.dev/gemini-api/docs/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 1.5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cached input",
+          "price": 0.15,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 1,
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 9,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "DeepSeek",
+      "id": "deepseek-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://api-docs.deepseek.com/quick_start/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input cache miss",
+          "price": 0.14,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Input cache hit",
+          "price": 0.0028,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 0.28,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "DeepSeek",
+      "id": "deepseek-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://api-docs.deepseek.com/quick_start/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input cache miss",
+          "price": 0.435,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": "official 1/4 original price from 2026-05-31 15:59 UTC"
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Input cache hit",
+          "price": 0.003625,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": "official 1/4 original price from 2026-05-31 15:59 UTC"
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 0.87,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": "official 1/4 original price from 2026-05-31 15:59 UTC"
+          }
+        }
+      ]
+    },
+    {
+      "provider": "xAI",
+      "id": "grok-4.3",
+      "name": "Grok 4.3",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://docs.x.ai/developers/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 1.25,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cached input",
+          "price": 0.2,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 2.5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Zhipu",
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://open.bigmodel.cn/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 8,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 2,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 28,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Zhipu",
+      "id": "glm-5.1",
+      "name": "GLM-5.1",
+      "contextWindow": "200k",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://open.bigmodel.cn/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 6,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input < 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 8,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input >= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 1.3,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input < 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 2,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input >= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 24,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input < 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 28,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input >= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Zhipu",
+      "id": "glm-5-turbo",
+      "name": "GLM-5-Turbo",
+      "contextWindow": "200k",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://open.bigmodel.cn/pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 5,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input < 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 7,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input >= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 22,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input < 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 26,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input >= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Alibaba",
+      "id": "qwen3.7-max",
+      "name": "Qwen3.7 Max",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 2.5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 7.5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Alibaba",
+      "id": "qwen3.7-plus",
+      "name": "Qwen3.7 Plus",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.4,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 1.2,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "256k < prompt <= 1M tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 1.6,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 4.8,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "256k < prompt <= 1M tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Alibaba",
+      "id": "qwen3.6-flash",
+      "name": "Qwen3.6 Flash",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.25,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 1,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "256k < prompt <= 1M tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 1.5,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "prompt <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 4,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "256k < prompt <= 1M tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "ByteDance",
+      "id": "doubao-seed-evolving",
+      "name": "Doubao Seed Evolving",
+      "contextWindow": "256k",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://www.volcengine.com/docs/82379/1544106"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 6,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 1.2,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 30,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "ByteDance",
+      "id": "doubao-seed-2.1-pro",
+      "name": "Doubao Seed 2.1 Pro",
+      "contextWindow": "256k",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://www.volcengine.com/docs/82379/1544106"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 6,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 1.2,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 30,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "ByteDance",
+      "id": "doubao-seed-2.1-turbo",
+      "name": "Doubao Seed 2.1 Turbo",
+      "contextWindow": "256k",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://www.volcengine.com/docs/82379/1544106"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 3,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.6,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 15,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "ByteDance",
+      "id": "doubao-seed-2.0-lite",
+      "name": "Doubao Seed 2.0 Lite",
+      "contextWindow": "256k",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://www.volcengine.com/docs/82379/1544106"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.6,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.9,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "32k < input <= 128k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 1.8,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "128k < input <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.12,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.18,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "32k < input <= 128k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.36,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "128k < input <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "input <= 32k tokens",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "32k < input <= 128k tokens",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "128k < input <= 256k tokens",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 3.6,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 5.4,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "32k < input <= 128k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 10.8,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "128k < input <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "ByteDance",
+      "id": "doubao-seed-2.0-mini",
+      "name": "Doubao Seed 2.0 Mini",
+      "contextWindow": "256k",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://www.volcengine.com/docs/82379/1544106"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.2,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.4,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "32k < input <= 128k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.8,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "128k < input <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.04,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.08,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "32k < input <= 128k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Cache hit",
+          "price": 0.16,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "128k < input <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "input <= 32k tokens",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "32k < input <= 128k tokens",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "cache_storage",
+          "label": "Cache storage",
+          "price": 0.017,
+          "currency": "CNY",
+          "unit": "1M tokens/hour",
+          "conditions": {
+            "contextRange": "128k < input <= 256k tokens",
+            "cacheDuration": "1h",
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 2,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 32k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 4,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "32k < input <= 128k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 8,
+          "currency": "CNY",
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "128k < input <= 256k tokens",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Xiaomi",
+      "id": "mimo-v2.5-pro",
+      "name": "MiMo V2.5 Pro",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://platform.xiaomimimo.com/docs/en-US/price/pay-as-you-go"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input cache miss",
+          "price": 0.435,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Input cache hit",
+          "price": 0.0036,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 0,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": "limited-time free"
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 0.87,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Xiaomi",
+      "id": "mimo-v2.5",
+      "name": "MiMo V2.5",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "audio",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://platform.xiaomimimo.com/docs/en-US/price/pay-as-you-go"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input cache miss",
+          "price": 0.14,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Input cache hit",
+          "price": 0.0028,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_write_tokens",
+          "label": "Cache write",
+          "price": 0,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": "limited-time free"
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 0.28,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Kimi",
+      "id": "kimi-k2.6",
+      "name": "Kimi K2.6",
+      "contextWindow": "262k",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://platform.kimi.ai/docs/pricing/chat-k26"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input cache miss",
+          "price": 0.95,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Input cache hit",
+          "price": 0.16,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 4,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "Kimi",
+      "id": "kimi-k2.7-code",
+      "name": "Kimi K2.7 Code",
+      "contextWindow": "262k",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "source": {
+        "url": "https://platform.kimi.ai/docs/pricing/chat-k27-code"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input cache miss",
+          "price": 0.95,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Input cache hit",
+          "price": 0.19,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 4,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "all",
+            "cacheDuration": null,
+            "note": null
+          }
+        }
+      ]
+    },
+    {
+      "provider": "MiniMax",
+      "id": "minimax-m3",
+      "name": "MiniMax M3",
+      "contextWindow": "1M",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ],
+        "documents": [
+          "pdf"
+        ]
+      },
+      "source": {
+        "url": "https://platform.minimax.io/docs/guides/pricing-paygo"
+      },
+      "pricingItems": [
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.3,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 512k tokens",
+            "cacheDuration": null,
+            "note": "Permanent 50% off"
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 1.2,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 512k tokens",
+            "cacheDuration": null,
+            "note": "Permanent 50% off"
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Prompt caching read",
+          "price": 0.06,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input <= 512k tokens",
+            "cacheDuration": null,
+            "note": "Permanent 50% off"
+          }
+        },
+        {
+          "category": "input_tokens",
+          "label": "Input",
+          "price": 0.6,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input > 512k tokens",
+            "cacheDuration": null,
+            "note": "Permanent 50% off"
+          }
+        },
+        {
+          "category": "output_tokens",
+          "label": "Output",
+          "price": 2.4,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input > 512k tokens",
+            "cacheDuration": null,
+            "note": "Permanent 50% off"
+          }
+        },
+        {
+          "category": "cache_read_tokens",
+          "label": "Prompt caching read",
+          "price": 0.12,
+          "unit": "1M tokens",
+          "conditions": {
+            "contextRange": "input > 512k tokens",
+            "cacheDuration": null,
+            "note": "Permanent 50% off"
+          }
+        }
+      ]
+    }
+  ]
+}
