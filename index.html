@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=20260602-03">
+    <link rel="stylesheet" href="styles.css?v=20260630-01">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -67,6 +67,19 @@
     </header>
 
     <main>
+      <section class="preset-panel" aria-label="Comparison presets">
+        <div class="preset-head">
+          <h2>Top Model Comparison</h2>
+          <button id="mobileControlsToggle" class="mobile-controls-toggle" type="button" aria-expanded="true">Hide</button>
+          <p>Compare daily frontier models, or the highest-priced model from each provider.</p>
+        </div>
+        <div class="preset-actions">
+          <button type="button" data-compare-preset="all">All providers</button>
+          <button type="button" data-compare-preset="bigDaily">Big Daily</button>
+          <button type="button" data-compare-preset="china">China</button>
+          <button type="button" data-compare-preset="nonChina">Non-China</button>
+        </div>
+      </section>
       <section class="toolbar" aria-label="Filters">
         <label class="control-field date-field">
           Price Date
@@ -118,7 +131,15 @@
       <section class="compare" aria-live="polite">
         <div class="section-head">
           <h2>Selected Comparison</h2>
-          <button id="clearCompare" type="button" hidden>Clear</button>
+          <div class="compare-head-actions">
+            <div class="compare-presets" aria-label="Comparison presets">
+              <button type="button" data-compare-preset="all">All providers</button>
+              <button type="button" data-compare-preset="bigDaily">Big Daily</button>
+              <button type="button" data-compare-preset="china">China</button>
+              <button type="button" data-compare-preset="nonChina">Non-China</button>
+            </div>
+            <button id="clearCompare" type="button" hidden>Clear</button>
+          </div>
         </div>
         <div id="compareList" class="compare-list"></div>
       </section>
@@ -142,6 +163,6 @@
       </section>
     </noscript>
 
-    <script src="src/app.js?v=20260602-03" defer></script>
+    <script src="src/app.js?v=20260630-01" defer></script>
   </body>
 </html>

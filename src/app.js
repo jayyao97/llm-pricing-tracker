@@ -11,6 +11,8 @@ const state = {
     key: "model",
     direction: "asc",
   },
+  mobileControlsExpanded: true,
+  mobileControlsManualOverride: null,
 };
 
 const els = {
@@ -25,6 +27,9 @@ const els = {
   header: document.querySelector("#priceHeader"),
   rows: document.querySelector("#priceRows"),
   rowCount: document.querySelector("#rowCount"),
+  presetButtons: document.querySelectorAll("[data-compare-preset]"),
+  mobileControlsToggle: document.querySelector("#mobileControlsToggle"),
+  compareSection: document.querySelector(".compare"),
   compareList: document.querySelector("#compareList"),
   clearCompare: document.querySelector("#clearCompare"),
   usdCnyRate: document.querySelector("#usdCnyRate"),
@@ -35,6 +40,17 @@ const els = {
 
 const moneyFormatters = new Map();
 let floatingHeaderSignature = "";
+
+const providerGroups = {
+  big3: ["OpenAI", "Anthropic", "Google"],
+  china: ["Alibaba", "ByteDance", "DeepSeek", "Kimi", "LongCat", "MiniMax", "Xiaomi", "Zhipu"],
+};
+
+const dailyBigModelRules = {
+  OpenAI: (model) => !/\bpro\b/i.test(model.name),
+  Anthropic: (model) => /\bopus\b/i.test(model.name),
+  Google: (model) => /\bpro\b/i.test(model.name),
+};
 
 async function init() {
   if (window.location.protocol === "file:") {
@@ -91,6 +107,14 @@ function bindEvents() {
     state.selectedModels.clear();
     render();
   });
+  els.presetButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      applyComparisonPreset(button.dataset.comparePreset);
+    });
+  });
+  els.mobileControlsToggle.addEventListener("click", () => {
+    setMobileControlsExpanded(!state.mobileControlsExpanded, true);
+  });
   els.usdCnyRate.addEventListener("input", () => {
     const nextRate = Number(els.usdCnyRate.value);
     if (!Number.isFinite(nextRate) || nextRate <= 0) {
@@ -106,8 +130,43 @@ function bindEvents() {
   });
   els.syncRate.addEventListener("click", syncExchangeRate);
   window.addEventListener("scroll", updateFloatingHeaders, { passive: true });
+  window.addEventListener("scroll", updateMobileControls, { passive: true });
   window.addEventListener("resize", updateFloatingHeaders);
+  window.addEventListener("resize", updateMobileControls);
   els.tableScroll.addEventListener("scroll", updateFloatingHeaders, { passive: true });
+}
+
+function updateMobileControls() {
+  if (!window.matchMedia("(max-width: 760px)").matches) {
+    state.mobileControlsManualOverride = null;
+    setMobileControlsExpanded(true, false);
+    return;
+  }
+
+  if (state.mobileControlsManualOverride !== null) {
+    setMobileControlsExpanded(state.mobileControlsManualOverride, false);
+    return;
+  }
+
+  const compareRect = els.compareSection.getBoundingClientRect();
+  const inCompareArea = compareRect.top < window.innerHeight * 0.35 && compareRect.bottom > 120;
+  if (!inCompareArea) {
+    setMobileControlsExpanded(true, false);
+    return;
+  }
+
+  setMobileControlsExpanded(false, false);
+}
+
+function setMobileControlsExpanded(isExpanded, isManual) {
+  state.mobileControlsExpanded = isExpanded;
+  if (isManual) {
+    state.mobileControlsManualOverride = isExpanded;
+  }
+  document.body.classList.toggle("mobile-controls-collapsed", !isExpanded);
+  els.mobileControlsToggle.setAttribute("aria-expanded", String(isExpanded));
+  els.mobileControlsToggle.textContent = isExpanded ? "Hide" : "Filters";
+  updateFloatingHeaders();
 }
 
 function renderVersionOptions() {
@@ -447,6 +506,67 @@ function setModelSelected(selectionKey, isSelected) {
   renderCompare(currentVersion());
 }
 
+function applyComparisonPreset(preset) {
+  const version = currentVersion();
+  const models = preset === "bigDaily"
+    ? dailyBigModels(version)
+    : highestPricedModelsByProvider(version, providersForPreset(version, preset));
+
+  state.selectedModels.clear();
+  models.forEach((model) => {
+    state.selectedModels.add(selectedModelKey(version, model));
+  });
+
+  render();
+  document.querySelector(".compare")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function providersForPreset(version, preset) {
+  const providers = [...new Set(version.models.map((model) => model.provider))].sort();
+  if (preset === "all") {
+    return providers;
+  }
+  if (preset === "china") {
+    return providerGroups.china.filter((provider) => providers.includes(provider));
+  }
+  if (preset === "nonChina") {
+    return providers.filter((provider) => !providerGroups.china.includes(provider));
+  }
+  return [];
+}
+
+function dailyBigModels(version) {
+  return providerGroups.big3
+    .map((provider) => {
+      const providerModels = version.models.filter((model) => model.provider === provider);
+      const preferred = providerModels.filter((model) => dailyBigModelRules[provider]?.(model));
+      return highestPricedModel(preferred.length ? preferred : providerModels);
+    })
+    .filter(Boolean);
+}
+
+function highestPricedModelsByProvider(version, providers) {
+  return providers
+    .map((provider) => highestPricedModel(version.models.filter((model) => model.provider === provider)))
+    .filter(Boolean)
+    .sort((left, right) => {
+      return modelMaxConvertedPrice(right) - modelMaxConvertedPrice(left)
+        || left.name.localeCompare(right.name);
+    });
+}
+
+function highestPricedModel(models) {
+  return [...models].sort((left, right) => {
+    return modelMaxConvertedPrice(right) - modelMaxConvertedPrice(left)
+      || left.name.localeCompare(right.name);
+  })[0];
+}
+
+function modelMaxConvertedPrice(model) {
+  const prices = model.pricingItems.map(convertedPrice).filter(Number.isFinite);
+  return prices.length ? Math.max(...prices) : Number.NEGATIVE_INFINITY;
+}
+
 function selectedModelKey(version, model) {
   return `${version.date}::${model.provider}::${model.id}`;
 }
@@ -538,11 +658,11 @@ function renderCompare(version) {
     return;
   }
 
-  const rows = compareRows(selected);
-  const rankedSelected = sortModelsByComparisonScore(selected, rows);
+  const sortedSelected = sortModelsByComparisonPrice(selected);
+  const rows = compareRows(sortedSelected);
   els.compareList.innerHTML = `
     <div class="compare-basket" aria-label="Comparison basket">
-      ${selected.map((model) => `
+      ${sortedSelected.map((model) => `
         <button class="compare-chip" type="button" data-remove-selection="${escapeHtml(model.compareKey)}" title="Remove ${escapeHtml(model.name)} from comparison">
           <span>${escapeHtml(model.name)}</span>
           <small>${escapeHtml(model.provider)} · ${escapeHtml(model.snapshotDate)}</small>
@@ -551,9 +671,9 @@ function renderCompare(version) {
       `).join("")}
     </div>
     <div class="compare-table-wrap">
-      <div class="compare-grid" style="--compare-columns: ${rankedSelected.length}">
+      <div class="compare-grid" style="--compare-columns: ${sortedSelected.length}">
         <div class="compare-cell compare-header">Field</div>
-        ${rankedSelected.map((model) => `
+        ${sortedSelected.map((model) => `
           <div class="compare-cell compare-header">
             <span class="model-name">${escapeHtml(model.name)}</span>
             <span class="model-id">${escapeHtml(model.provider)} · ${escapeHtml(model.snapshotDate)}</span>
@@ -561,7 +681,7 @@ function renderCompare(version) {
         `).join("")}
         ${rows.map((row) => `
           <div class="compare-cell compare-row-head${row.isBandHeader ? " compare-band-head" : ""}">${escapeHtml(row.label)}</div>
-          ${rankedSelected.map((model) => {
+          ${sortedSelected.map((model) => {
             const rank = row.rankByModel?.get(compareModelKey(model));
             const rankClass = rank ? ` rank-${rank}` : "";
             const rankLabel = rank ? `<span class="rank-badge rank-badge-${rank}">#${rank}</span>` : "";
@@ -587,14 +707,12 @@ function renderCompare(version) {
 
 function selectedCompareModels() {
   const selected = [];
+  const modelsByKey = new Map();
 
   for (const version of state.data.versions) {
     for (const model of version.models) {
       const compareKey = selectedModelKey(version, model);
-      if (!state.selectedModels.has(compareKey)) {
-        continue;
-      }
-      selected.push({
+      modelsByKey.set(compareKey, {
         ...model,
         compareKey,
         originalId: model.id,
@@ -604,7 +722,55 @@ function selectedCompareModels() {
     }
   }
 
+  for (const compareKey of state.selectedModels) {
+    const model = modelsByKey.get(compareKey);
+    if (model) {
+      selected.push(model);
+    }
+  }
+
   return selected;
+}
+
+function sortModelsByComparisonPrice(models) {
+  const outputSort = firstComparableOutputSort(models);
+  return [...models].sort((left, right) => {
+    return compareFinitePrices(outputSort.price(left), outputSort.price(right))
+      || compareFinitePrices(categoryPriceForSort(left, "input_tokens"), categoryPriceForSort(right, "input_tokens"))
+      || compareFinitePrices(modelMaxConvertedPrice(left), modelMaxConvertedPrice(right))
+      || left.name.localeCompare(right.name);
+  });
+}
+
+function firstComparableOutputSort(models) {
+  const outputSpec = comparePriceSpecs(models).find((spec) => spec.category === "output_tokens");
+  if (!outputSpec) {
+    return { price: (model) => categoryPriceForSort(model, "output_tokens") };
+  }
+
+  const band = contextBands(models).find((candidate) => comparableCountForBand(models, candidate, outputSpec) >= 2);
+  if (!band) {
+    return { price: (model) => categoryPriceForSort(model, "output_tokens") };
+  }
+
+  return {
+    price: (model) => convertedPrice(findItemForBand(model, band, outputSpec)),
+  };
+}
+
+function compareFinitePrices(left, right) {
+  const leftFinite = Number.isFinite(left);
+  const rightFinite = Number.isFinite(right);
+  if (!leftFinite && !rightFinite) {
+    return 0;
+  }
+  if (!leftFinite) {
+    return 1;
+  }
+  if (!rightFinite) {
+    return -1;
+  }
+  return left - right;
 }
 
 function clearFloatingHeaders() {
@@ -1085,16 +1251,6 @@ function contextConditionText(item) {
     : "all ranges";
 }
 
-function sortModelsByComparisonScore(models, rows) {
-  const sourceOrder = new Map(models.map((model, index) => [compareModelKey(model), index]));
-
-  return [...models].sort((left, right) => {
-    const leftScore = comparisonScore(left, rows);
-    const rightScore = comparisonScore(right, rows);
-    return rightScore - leftScore || sourceOrder.get(compareModelKey(left)) - sourceOrder.get(compareModelKey(right));
-  });
-}
-
 function compareModelKey(model) {
   return model.compareKey || model.id;
 }
@@ -1127,22 +1283,6 @@ function rankModelsForBand(models, band, spec) {
   }
 
   return ranks;
-}
-
-function comparisonScore(model, rows) {
-  const scored = rows.reduce((result, row) => {
-    if (!row.isComparable) {
-      return result;
-    }
-
-    const rank = row.rankByModel?.get(compareModelKey(model));
-    return {
-      score: result.score + (rank ? 4 - rank : 0),
-      count: result.count + 1,
-    };
-  }, { score: 0, count: 0 });
-
-  return scored.count ? scored.score / scored.count : 0;
 }
 
 function itemKey(item) {
