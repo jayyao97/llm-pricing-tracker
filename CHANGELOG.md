@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-30
+
+- Added ByteDance's Doubao Seed Evolving (doubao-seed-evolving), a generally available Seed 2.1 Evolving model ID that calls the strongest version and currently maps to Seed 2.1 Pro. Standard Volcengine Ark pay-as-you-go pricing: input 6, cache hit 1.2, cache storage 0.017 CNY/1M/hour, output 30 CNY per 1M tokens.
+- Left Doubao Seed 2.1 Pro, Seed 2.1 Turbo, Seed 2.0 Lite, and Seed 2.0 Mini in place; their standard pay-as-you-go prices are unchanged.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Zhipu, Alibaba, Kimi, MiniMax, and Xiaomi against their official pricing pages; no other tracked price or lineup changes.
+- Updated the default USD/CNY rate to 6.804421 from ExchangeRate-API.
+
 ## 2026-06-23
 
 - ByteDance launched the new-generation Doubao Seed 2.1 series on the Volcengine Ark standard pay-as-you-go (标准按量付费) table. Added two models (256k context window, text/image/video understanding, no audio):
