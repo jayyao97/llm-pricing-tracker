@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-01
+
+- Replaced Claude Sonnet 4.6 with Claude Sonnet 5 (claude-sonnet-5), now generally available on the official pricing page. Current promotional pricing through 2026-08-31: input 2, 5m cache write 2.5, 1h cache write 4, cache hit 0.20, output 10 USD per 1M tokens; the official table lists 2026-09-01 prices as 3 / 3.75 / 6 / 0.30 / 15.
+- Rechecked OpenAI, Google, DeepSeek, xAI, Zhipu, Alibaba, ByteDance, Kimi, MiniMax, Xiaomi, and LongCat against their official pricing pages; no other tracked price or lineup changes.
+- Updated the default USD/CNY rate timestamp from ExchangeRate-API; the rate remains 6.804421.
+
 ## 2026-06-30
 
 - Added Meituan LongCat-2.0 (longcat-2.0), currently the only LongCat API pay-as-you-go model listed on the official LongCat pricing page: input cache miss 0.30, cache hit 0.006, output 1.20 USD per 1M tokens at the limited-time discounted rate (official list prices: 0.75 / 0.015 / 2.95), with a 1M context window.
