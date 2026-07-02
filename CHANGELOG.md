@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-02
+
+- Added Zhipu GLM-5-Turbo cache-hit pricing from the official BigModel pay-as-you-go table: 1.2 CNY per 1M tokens for input <32k and 1.8 CNY per 1M tokens for input >=32k. Input and output prices are unchanged.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Alibaba, ByteDance, Kimi, MiniMax, Xiaomi, and LongCat against their official pricing pages; no tracked price or lineup changes.
+- Updated the default USD/CNY rate to 6.796501 from ExchangeRate-API.
+
 ## 2026-07-01
 
 - Replaced Claude Sonnet 4.6 with Claude Sonnet 5 (claude-sonnet-5), now generally available on the official pricing page. Current promotional pricing through 2026-08-31: input 2, 5m cache write 2.5, 1h cache write 4, cache hit 0.20, output 10 USD per 1M tokens; the official table lists 2026-09-01 prices as 3 / 3.75 / 6 / 0.30 / 15.
