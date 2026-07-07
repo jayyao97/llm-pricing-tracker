@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-07
+
+- Added Zhipu GLM-5V-Turbo (glm-5v-turbo), a new multimodal GLM-5 Turbo variant listed on the official BigModel pricing page: text/image/video input, 200k context, input 5/7 CNY, cache hit 1.2/1.8 CNY, and output 22/26 CNY per 1M tokens for input <32k / >=32k.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, xAI, Alibaba, ByteDance, Kimi, MiniMax, Xiaomi, and LongCat against their official pricing pages; no other tracked price or lineup changes.
+- Updated the default USD/CNY rate to 6.785482 from ExchangeRate-API.
+
 ## 2026-07-02
 
 - Added Zhipu GLM-5-Turbo cache-hit pricing from the official BigModel pay-as-you-go table: 1.2 CNY per 1M tokens for input <32k and 1.8 CNY per 1M tokens for input >=32k. Input and output prices are unchanged.
