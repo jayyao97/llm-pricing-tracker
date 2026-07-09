@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-09
+
+- Replaced xAI Grok 4.3 with Grok 4.5 (grok-4.5), now listed on the official xAI pricing page as the newest Grok flagship: 500k context, input 2, cache hit 0.50, output 6 USD per 1M tokens.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, Zhipu, Alibaba, ByteDance, Kimi, MiniMax, Xiaomi, and LongCat against their official pricing pages; no other tracked price or lineup changes.
+- Updated the default USD/CNY rate to 6.801883 from ExchangeRate-API.
+
 ## 2026-07-07
 
 - Added Zhipu GLM-5V-Turbo (glm-5v-turbo), a new multimodal GLM-5 Turbo variant listed on the official BigModel pricing page: text/image/video input, 200k context, input 5/7 CNY, cache hit 1.2/1.8 CNY, and output 22/26 CNY per 1M tokens for input <32k / >=32k.
