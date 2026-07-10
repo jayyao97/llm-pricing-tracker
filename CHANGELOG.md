@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-07-10
+
+- Replaced OpenAI GPT-5.5 with the GPT-5.6 standard family now listed on the official OpenAI pricing and models pages. All three GPT-5.6 standard models have a 1.05M context window:
+  - GPT-5.6 Sol (gpt-5.6-sol): short-context input 5, cache hit 0.50, cache write 6.25, output 30 USD per 1M tokens; long-context input 10, cache hit 1, cache write 12.50, output 45 USD per 1M tokens.
+  - GPT-5.6 Terra (gpt-5.6-terra): short-context input 2.5, cache hit 0.25, cache write 3.125, output 15 USD per 1M tokens; long-context input 5, cache hit 0.50, cache write 6.25, output 22.5 USD per 1M tokens.
+  - GPT-5.6 Luna (gpt-5.6-luna): short-context input 1, cache hit 0.10, cache write 1.25, output 6 USD per 1M tokens; long-context input 2, cache hit 0.20, cache write 2.5, output 9 USD per 1M tokens.
+- Added Meta Muse Spark 1.1 (muse-spark-1.1), now available in public preview on Meta Model API with a 1,048,576-token context window: input 1.25, cached input 0.15, and output 4.25 USD per 1M tokens.
+- Rechecked Anthropic, Google, DeepSeek, xAI, Zhipu, Alibaba, ByteDance, Kimi, MiniMax, Xiaomi, and LongCat against their official pricing pages; no other tracked price or lineup changes.
+- Updated the default USD/CNY rate to 6.810223 from ExchangeRate-API.
+
 ## 2026-07-09
 
 - Replaced xAI Grok 4.3 with Grok 4.5 (grok-4.5), now listed on the official xAI pricing page as the newest Grok flagship: 500k context, input 2, cache hit 0.50, output 6 USD per 1M tokens.
