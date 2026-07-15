@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-07-15
+
+- Added xAI Grok 4.5 higher-context pricing for requests above 200k tokens: input 4, cache hit 1, and output 12 USD per 1M tokens. The existing input 2, cache hit 0.50, and output 6 USD rates now apply through 200k tokens.
+- Rechecked OpenAI, Anthropic, Google, DeepSeek, Zhipu, Alibaba, ByteDance, Kimi, MiniMax, and Xiaomi against their official pricing pages; no tracked price or lineup changes.
+
 ## 2026-07-10
 
 - Replaced OpenAI GPT-5.5 with the GPT-5.6 standard family now listed on the official OpenAI pricing and models pages. All three GPT-5.6 standard models have a 1.05M context window:
