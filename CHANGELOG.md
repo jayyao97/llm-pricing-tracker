@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-16
+
+- Applied Alibaba Qwen3.7 Max's official limited-time 50% discount: input 1.25 and output 3.75 USD per 1M tokens (list prices: 2.5 / 7.5).
+- Applied Alibaba Qwen3.7 Plus's official limited-time 20% discount: input/output 0.32/1.28 USD through 256k tokens and 0.96/3.84 USD above 256k through 1M tokens (list prices: 0.4/1.6 and 1.2/4.8).
+- Rechecked all other tracked provider prices and lineups against their official pages; no other changes.
+- Updated the default USD/CNY rate to 6.782028 from ExchangeRate-API.
+
 ## 2026-07-15
 
 - Added xAI Grok 4.5 higher-context pricing for requests above 200k tokens: input 4, cache hit 1, and output 12 USD per 1M tokens. The existing input 2, cache hit 0.50, and output 6 USD rates now apply through 200k tokens.
