@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-17
+
+- Added Kimi K3 (kimi-k3), Kimi's new flagship model for long-horizon coding and knowledge work: 1,048,576-token context, text/image/video input, input cache miss 3, cache hit 0.30, and output 15 USD per 1M tokens.
+- Kept Kimi K2.6 and K2.7 Code; both remain available on the official pricing index with unchanged prices.
+- Rechecked all other tracked providers against their official pricing pages; no other tracked price or lineup changes. Meta's Model API documentation was region-blocked, so its values were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.778295 from ExchangeRate-API.
+
 ## 2026-07-16
 
 - Applied Alibaba Qwen3.7 Max's official limited-time 50% discount: input 1.25 and output 3.75 USD per 1M tokens (list prices: 2.5 / 7.5).
