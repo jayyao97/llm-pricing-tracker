@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-19
+
+- Reduced xAI Grok 4.5 cached-input pricing from 0.50 to 0.30 USD per 1M tokens through 200k input tokens and from 1.00 to 0.60 USD above 200k tokens; input and output prices are unchanged.
+- Rechecked all other requested providers against their official pricing pages; no other tracked price or curated lineup changes. Kimi's pricing index still lists Kimi K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing table rows, so those prices were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.784582 from ExchangeRate-API.
+
 ## 2026-07-17
 
 - Added Kimi K3 (kimi-k3), Kimi's new flagship model for long-horizon coding and knowledge work: 1,048,576-token context, text/image/video input, input cache miss 3, cache hit 0.30, and output 15 USD per 1M tokens.
