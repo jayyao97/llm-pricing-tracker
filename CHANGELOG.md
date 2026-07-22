@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-22
+
+- Replaced Google Gemini 3.5 Flash with the generally available Gemini 3.6 Flash; input, cache-read, and cache-storage prices are unchanged, while output pricing decreased from 9.00 to 7.50 USD per 1M tokens.
+- Rechecked all other requested providers against their official pricing pages; no other tracked price or curated lineup changes.
+- Updated the default USD/CNY rate to 6.778084 from ExchangeRate-API.
+
 ## 2026-07-19
 
 - Reduced xAI Grok 4.5 cached-input pricing from 0.50 to 0.30 USD per 1M tokens through 200k input tokens and from 1.00 to 0.60 USD above 200k tokens; input and output prices are unchanged.
