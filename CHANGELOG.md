@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-25
+
+- Replaced Anthropic Claude Opus 4.8 with the generally available Claude Opus 5, its official successor; the 1M context window and standard input, cache-write, cache-read, and output prices are unchanged.
+- Rechecked all other requested providers against their official pricing pages; no other tracked price or curated lineup changes.
+- Updated the default USD/CNY rate to 6.783033 from ExchangeRate-API.
+
 ## 2026-07-22
 
 - Replaced Google Gemini 3.5 Flash with the generally available Gemini 3.6 Flash; input, cache-read, and cache-storage prices are unchanged, while output pricing decreased from 9.00 to 7.50 USD per 1M tokens.
