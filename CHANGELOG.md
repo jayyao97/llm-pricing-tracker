@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-26
+
+- Replaced Alibaba Qwen3.6 Flash with the generally available Qwen3.7 Flash; International standard input/output pricing is 0.03/0.13 USD per 1M tokens through 32k, 0.10/0.40 above 32k through 256k, and 0.20/0.80 above 256k through 1M.
+- Rechecked all other requested providers against their official pricing pages; no other tracked price or curated lineup changes. Kimi's pricing index still lists Kimi K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing table rows, so those prices were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.781903 from ExchangeRate-API.
+
 ## 2026-07-25
 
 - Replaced Anthropic Claude Opus 4.8 with the generally available Claude Opus 5, its official successor; the 1M context window and standard input, cache-write, cache-read, and output prices are unchanged.
