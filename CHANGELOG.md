@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-31
+
+- Reduced OpenAI GPT-5.6 Terra standard input/cached-input/cache-write/output pricing from 2.5/0.25/3.125/15 to 2/0.2/2.5/12 USD per 1M tokens through 272k input tokens and from 5/0.5/6.25/22.5 to 4/0.4/5/18 above 272k.
+- Reduced OpenAI GPT-5.6 Luna standard input/cached-input/cache-write/output pricing from 1/0.1/1.25/6 to 0.2/0.02/0.25/1.2 USD per 1M tokens through 272k input tokens and from 2/0.2/2.5/9 to 0.4/0.04/0.5/1.8 above 272k.
+- Rechecked all other tracked provider prices and curated lineups against their official pages; no other changes. Meta's official documentation was unreadable, so its values were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.773647 from ExchangeRate-API.
+
 ## 2026-07-26
 
 - Replaced Alibaba Qwen3.6 Flash with the generally available Qwen3.7 Flash; International standard input/output pricing is 0.03/0.13 USD per 1M tokens through 32k, 0.10/0.40 above 32k through 256k, and 0.20/0.80 above 256k through 1M.
