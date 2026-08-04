@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-04
+
+- Replaced Alibaba Qwen3.7 Max with the generally available Qwen3.8 Max; International standard input/output pricing is 2/6 USD per 1M tokens.
+- Rechecked all other tracked provider prices and curated lineups against their official pages; no other changes. Meta's official documentation was region-blocked, so its values were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.759763 from ExchangeRate-API.
+
 ## 2026-07-31
 
 - Reduced OpenAI GPT-5.6 Terra standard input/cached-input/cache-write/output pricing from 2.5/0.25/3.125/15 to 2/0.2/2.5/12 USD per 1M tokens through 272k input tokens and from 5/0.5/6.25/22.5 to 4/0.4/5/18 above 272k.
