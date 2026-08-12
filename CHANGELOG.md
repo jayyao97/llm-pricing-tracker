@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-12
+
+- Removed OpenAI GPT-5.5 Pro (gpt-5.5-pro), which is no longer listed on the official pricing or model catalog pages; the current frontier lineup is GPT-5.6 Sol, Terra, and Luna.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other changes.
+- Updated the default USD/CNY rate to 6.755367 from ExchangeRate-API.
+
 ## 2026-08-04
 
 - Replaced Alibaba Qwen3.7 Max with the generally available Qwen3.8 Max; International standard input/output pricing is 2/6 USD per 1M tokens.
