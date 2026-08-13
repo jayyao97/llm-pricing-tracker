@@ -3,6 +3,7 @@
 ## 2026-08-13
 
 - Replaced xAI Grok 4.5 with Grok 4.6, the current frontier model; input/output pricing and the 500k context window are unchanged, while cached-input pricing is 0.50 USD per 1M tokens through 200k input tokens and 1.00 USD above 200k.
+- Removed the stale historical quarter-price note from DeepSeek V4 Pro; current cache-hit, cache-miss, and output prices are unchanged.
 - Rechecked all other requested provider prices and curated lineups against their official pages; no other changes. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.
 - Updated the default USD/CNY rate to 6.758618 from ExchangeRate-API.
 
