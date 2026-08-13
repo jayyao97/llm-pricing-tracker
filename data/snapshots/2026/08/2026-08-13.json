@@ -1,7 +1,7 @@
 {
   "date": "2026-08-13",
   "effectiveDate": "2026-08-13",
-  "notes": "xAI: replaced Grok 4.5 with Grok 4.6, the current frontier model; input/output prices and context are unchanged, while cached-input pricing is 0.50 USD per 1M tokens through 200k input tokens and 1.00 USD above 200k. All other requested provider prices and curated model lineups were rechecked against official pages and carried forward unchanged. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.",
+  "notes": "xAI: replaced Grok 4.5 with Grok 4.6, the current frontier model; input/output prices and context are unchanged, while cached-input pricing is 0.50 USD per 1M tokens through 200k input tokens and 1.00 USD above 200k. DeepSeek: removed the stale historical quarter-price note from V4 Pro; current token prices are unchanged. All other requested provider prices and curated model lineups were rechecked against official pages and carried forward unchanged. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.",
   "sources": [
     {
       "provider": "OpenAI",
@@ -1045,7 +1045,7 @@
           "conditions": {
             "contextRange": "all",
             "cacheDuration": null,
-            "note": "official 1/4 original price from 2026-05-31 15:59 UTC"
+            "note": null
           }
         },
         {
@@ -1056,7 +1056,7 @@
           "conditions": {
             "contextRange": "all",
             "cacheDuration": null,
-            "note": "official 1/4 original price from 2026-05-31 15:59 UTC"
+            "note": null
           }
         },
         {
@@ -1067,7 +1067,7 @@
           "conditions": {
             "contextRange": "all",
             "cacheDuration": null,
-            "note": "official 1/4 original price from 2026-05-31 15:59 UTC"
+            "note": null
           }
         }
       ]
