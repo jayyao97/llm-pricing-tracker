@@ -1,7 +1,7 @@
 {
   "date": "2026-08-14",
   "effectiveDate": "2026-08-14",
-  "notes": "Anthropic: Claude Sonnet 5's existing 2 USD input, 2.50 USD 5m cache-write, 4 USD 1h cache-write, 0.20 USD cache-read, and 10 USD output rates per 1M tokens are now permanent; removed the obsolete notes for the canceled 2026-09-01 increase. DeepSeek has announced new peak/off-peak rates effective 2026-08-16 16:00 UTC, so today's effective prices remain unchanged. All other requested provider prices and curated model lineups were rechecked against official pages and carried forward unchanged. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.",
+  "notes": "Google: replaced Gemini 3.6 Flash with the generally available Gemini 3.7 Flash. Its introductory standard prices through 2026-12-31 are 0.75 USD input, 0.075 USD cache read, 0.50 USD cache storage per hour, and 3.75 USD output per 1M tokens; the official 2027-01-01 prices are recorded in the pricing-item notes. Anthropic: Claude Sonnet 5's existing 2 USD input, 2.50 USD 5m cache-write, 4 USD 1h cache-write, 0.20 USD cache-read, and 10 USD output rates per 1M tokens are now permanent; removed the obsolete notes for the canceled 2026-09-01 increase. DeepSeek has announced new peak/off-peak rates effective 2026-08-16 16:00 UTC, so today's effective prices remain unchanged. All other requested provider prices and curated model lineups were rechecked against official pages and carried forward unchanged. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.",
   "sources": [
     {
       "provider": "OpenAI",
@@ -901,8 +901,8 @@
     },
     {
       "provider": "Google",
-      "id": "gemini-3.6-flash",
-      "name": "Gemini 3.6 Flash",
+      "id": "gemini-3.7-flash",
+      "name": "Gemini 3.7 Flash",
       "contextWindow": "1M",
       "modalities": {
         "input": [
@@ -925,45 +925,45 @@
         {
           "category": "input_tokens",
           "label": "Input",
-          "price": 1.5,
+          "price": 0.75,
           "unit": "1M tokens",
           "conditions": {
             "contextRange": "all",
             "cacheDuration": null,
-            "note": null
+            "note": "introductory price through 2026-12-31; 2027-01-01 price is 1.50"
           }
         },
         {
           "category": "cache_read_tokens",
           "label": "Cached input",
-          "price": 0.15,
+          "price": 0.075,
           "unit": "1M tokens",
           "conditions": {
             "contextRange": "all",
             "cacheDuration": null,
-            "note": null
+            "note": "introductory price through 2026-12-31; 2027-01-01 price is 0.15"
           }
         },
         {
           "category": "cache_storage",
           "label": "Cache storage",
-          "price": 1,
+          "price": 0.5,
           "unit": "1M tokens/hour",
           "conditions": {
             "contextRange": "all",
             "cacheDuration": "1h",
-            "note": null
+            "note": "introductory price through 2026-12-31; 2027-01-01 price is 1.00"
           }
         },
         {
           "category": "output_tokens",
           "label": "Output",
-          "price": 7.5,
+          "price": 3.75,
           "unit": "1M tokens",
           "conditions": {
             "contextRange": "all",
             "cacheDuration": null,
-            "note": null
+            "note": "introductory price through 2026-12-31; 2027-01-01 price is 7.50"
           }
         }
       ]
