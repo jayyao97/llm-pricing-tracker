@@ -4,6 +4,7 @@
 
 - Claude Sonnet 5's existing 2 / 2.50 / 4 / 0.20 / 10 USD per 1M token rates are now permanent; removed the obsolete conditions for the canceled 2026-09-01 increase.
 - DeepSeek announced peak/off-peak pricing effective 2026-08-16 16:00 UTC; current prices remain unchanged in this snapshot.
+- Replaced Google Gemini 3.6 Flash with the generally available Gemini 3.7 Flash. Introductory pricing through 2026-12-31 is 0.75 input, 0.075 cache read, 0.50 cache storage per hour, and 3.75 output USD per 1M tokens; rates double on 2027-01-01.
 
 ## 2026-08-13
 
