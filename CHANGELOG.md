@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-08-14
+
+- Claude Sonnet 5's existing 2 / 2.50 / 4 / 0.20 / 10 USD per 1M token rates are now permanent; removed the obsolete conditions for the canceled 2026-09-01 increase.
+- DeepSeek announced peak/off-peak pricing effective 2026-08-16 16:00 UTC; current prices remain unchanged in this snapshot.
+
 ## 2026-08-13
 
 - Replaced xAI Grok 4.5 with Grok 4.6, the current frontier model; input/output pricing and the 500k context window are unchanged, while cached-input pricing is 0.50 USD per 1M tokens through 200k input tokens and 1.00 USD above 200k.
