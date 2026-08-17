@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-17
+
+- Applied DeepSeek V4 Flash and V4 Pro peak/off-peak pricing. Peak hours are 01:00-04:00 and 06:00-10:00 UTC; all other hours use the half-price off-peak rates.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other changes. Kimi's per-model pages omitted pricing rows, and Volcengine redirected to a table-less documentation shell, so those prices were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.760612 from ExchangeRate-API.
+
 ## 2026-08-14
 
 - Claude Sonnet 5's existing 2 / 2.50 / 4 / 0.20 / 10 USD per 1M token rates are now permanent; removed the obsolete conditions for the canceled 2026-09-01 increase.
