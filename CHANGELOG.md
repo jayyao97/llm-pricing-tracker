@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-19
+
+- Replaced Zhipu GLM-5.2 with the newly listed GLM-5.3 flagship; the 1M context window and 8 CNY input, 2 CNY cache-hit, and 28 CNY output prices per 1M tokens are unchanged.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other changes. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.753148 from ExchangeRate-API.
+
 ## 2026-08-17
 
 - Applied DeepSeek V4 Flash and V4 Pro peak/off-peak pricing. Peak hours are 01:00-04:00 and 06:00-10:00 UTC; all other hours use the half-price off-peak rates.
