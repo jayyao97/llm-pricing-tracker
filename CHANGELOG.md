@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-22
+
+- Applied OpenAI GPT-5.6 Sol promotional standard pricing, available at least through 2026-11-21: short-context input/cached-input/cache-write/output prices are now 4/0.4/5/20 USD per 1M tokens, and long-context prices are now 8/0.8/10/30.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other changes. DeepSeek's official page exposed its current lineup but not its pricing table, and Kimi's fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged; Kimi's official index still lists K3, K2.7 Code, and K2.6.
+- Updated the default USD/CNY rate to 6.739393 from ExchangeRate-API.
+
 ## 2026-08-20
 
 - Replaced Zhipu GLM-5.2 with the newly listed GLM-5.3 flagship; the 1M context window and 8 CNY input, 2 CNY cache-hit, and 28 CNY output prices per 1M tokens are unchanged.
