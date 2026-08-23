@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-08-23
+
+- Applied DeepSeek's peak/off-peak schedule change: off-peak rates now apply all day Saturday and Sunday (Beijing Time); weekday peak hours remain 01:00-04:00 and 06:00-10:00 UTC. Numeric rates and the V4 Flash/Pro lineup are unchanged.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other changes. Kimi's fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged; its official index still lists K3, K2.7 Code, and K2.6.
+
 ## 2026-08-22
 
 - Applied OpenAI GPT-5.6 Sol promotional standard pricing, available at least through 2026-11-21: short-context input/cached-input/cache-write/output prices are now 4/0.4/5/20 USD per 1M tokens, and long-context prices are now 8/0.8/10/30.
