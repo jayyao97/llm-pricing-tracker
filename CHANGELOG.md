@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-28
+
+- Replaced Alibaba Qwen3.7 Flash with the generally available Qwen3.8 Flash; International standard pricing is 0.15 USD input and 0.47 USD output per 1M tokens for prompts up to 1M tokens.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes. Kimi's official index still lists K3, K2.7 Code, and K2.6.
+- Updated the default USD/CNY rate to 6.737816 from ExchangeRate-API.
+
 ## 2026-08-23
 
 - Applied DeepSeek's peak/off-peak schedule change: off-peak rates now apply all day Saturday and Sunday (Beijing Time); weekday peak hours remain 01:00-04:00 and 06:00-10:00 UTC. Numeric rates and the V4 Flash/Pro lineup are unchanged.
