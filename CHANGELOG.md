@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-03
+
+- Replaced Google Gemini 3.7 Flash with the generally available Gemini 3.8 Flash, now listed as Google's most intelligent Flash model; the 1M context window and introductory standard pricing through 2026-12-31 are unchanged.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.736913 from ExchangeRate-API.
+
 ## 2026-09-02
 
 - Replaced Anthropic Claude Fable 5 with the active latest Claude Fable 5.1; input, cache-write, and output prices are unchanged, while cache reads decreased from 1.00 USD to 0.25 USD per 1M tokens.
