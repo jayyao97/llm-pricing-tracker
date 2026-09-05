@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-05
+
+- Added Zhipu GLM-5.3-Flash, a generally available 1M-context multimodal model, at its limited-time standard prices of 0.4 CNY input, 0.115 CNY cache hit, free cache storage, and 1.4 CNY output per 1M tokens.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes. OpenAI GPT-6 Astra remains limited-access and was not added. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.73552 from ExchangeRate-API.
+
 ## 2026-09-03
 
 - Replaced Google Gemini 3.7 Flash with the generally available Gemini 3.8 Flash, now listed as Google's most intelligent Flash model; the 1M context window and introductory standard pricing through 2026-12-31 are unchanged.
