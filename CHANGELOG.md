@@ -2,8 +2,9 @@
 
 ## 2026-09-05
 
+- Same-day follow-up: added OpenAI GPT-6 Astra with a 1.05M context window and standard input/cached-input/cache-write/output prices of 10/1/12.5/50 USD per 1M tokens through 272k input tokens and 20/2/25/75 above that threshold, applying to the full request. The fetched model page no longer displays the limited-access rollout notice. GPT-5.6 Sol, Terra, and Luna remain listed and are retained.
 - Added Zhipu GLM-5.3-Flash, a generally available 1M-context multimodal model, at its limited-time standard prices of 0.4 CNY input, 0.115 CNY cache hit, free cache storage, and 1.4 CNY output per 1M tokens.
-- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes. OpenAI GPT-6 Astra remains limited-access and was not added. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.
+- The morning audit rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes at that time. OpenAI GPT-6 Astra was initially excluded due to its limited-access rollout notice, then added in the same-day follow-up above. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows, so those prices were carried forward unchanged.
 - Updated the default USD/CNY rate to 6.73552 from ExchangeRate-API.
 
 ## 2026-09-03
