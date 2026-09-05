@@ -12,8 +12,14 @@
     {
       "date": "2026-09-05",
       "effectiveDate": "2026-09-05",
-      "notes": "Zhipu: added the generally available GLM-5.3-Flash, a new 1M-context multimodal model, at its current limited-time standard prices of CNY 0.4 input, CNY 0.115 cache hit, free cache storage, and CNY 1.4 output per 1M tokens. All other requested provider prices and curated model lineups were rechecked against official pages and carried forward unchanged. OpenAI GPT-6 Astra remains limited-access and was not added. Kimi's official index still lists K3, K2.7 Code, and K2.6; its fetched per-model pages did not expose pricing rows.",
+      "notes": "Zhipu: added the generally available GLM-5.3-Flash, a new 1M-context multimodal model, at its current limited-time standard prices of CNY 0.4 input, CNY 0.115 cache hit, free cache storage, and CNY 1.4 output per 1M tokens. All other requested provider prices and curated model lineups were rechecked against official pages and carried forward unchanged. OpenAI: added GPT-6 Astra at standard input/cached-input/cache-write/output prices of 10/1/12.5/50 USD per 1M tokens for input up to 272k tokens and 20/2/25/75 above 272k tokens, priced for the full request. Same-day follow-up: the fetched model page no longer displays the limited-access rollout notice; GPT-5.6 Sol, Terra, and Luna remain listed on the official pricing page and are retained. Kimi's official index still lists K3, K2.7 Code, and K2.6; its fetched per-model pages did not expose pricing rows.",
       "sources": [
+        {
+          "provider": "OpenAI",
+          "title": "GPT-6 Astra Model",
+          "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+          "accessedAt": "2026-09-05"
+        },
         {
           "provider": "OpenAI",
           "title": "OpenAI API Pricing",
@@ -106,6 +112,114 @@
         }
       ],
       "models": [
+        {
+          "provider": "OpenAI",
+          "id": "gpt-6-astra",
+          "name": "GPT-6 Astra",
+          "contextWindow": "1.05M",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "source": {
+            "url": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+          },
+          "pricingItems": [
+            {
+              "category": "input_tokens",
+              "label": "Input",
+              "price": 10,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "input <= 272k tokens",
+                "cacheDuration": null,
+                "note": "standard pricing"
+              }
+            },
+            {
+              "category": "cache_read_tokens",
+              "label": "Cached input",
+              "price": 1,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "input <= 272k tokens",
+                "cacheDuration": null,
+                "note": "standard pricing"
+              }
+            },
+            {
+              "category": "cache_write_tokens",
+              "label": "Cache writes",
+              "price": 12.5,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "input <= 272k tokens",
+                "cacheDuration": null,
+                "note": "standard pricing"
+              }
+            },
+            {
+              "category": "output_tokens",
+              "label": "Output",
+              "price": 50,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "input <= 272k tokens",
+                "cacheDuration": null,
+                "note": "standard pricing"
+              }
+            },
+            {
+              "category": "input_tokens",
+              "label": "Input",
+              "price": 20,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "input > 272k tokens",
+                "cacheDuration": null,
+                "note": "standard pricing; priced for the full request"
+              }
+            },
+            {
+              "category": "cache_read_tokens",
+              "label": "Cached input",
+              "price": 2,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "input > 272k tokens",
+                "cacheDuration": null,
+                "note": "standard pricing; priced for the full request"
+              }
+            },
+            {
+              "category": "cache_write_tokens",
+              "label": "Cache writes",
+              "price": 25,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "input > 272k tokens",
+                "cacheDuration": null,
+                "note": "standard pricing; priced for the full request"
+              }
+            },
+            {
+              "category": "output_tokens",
+              "label": "Output",
+              "price": 75,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "input > 272k tokens",
+                "cacheDuration": null,
+                "note": "standard pricing; priced for the full request"
+              }
+            }
+          ]
+        },
         {
           "provider": "OpenAI",
           "id": "gpt-5.6-sol",
