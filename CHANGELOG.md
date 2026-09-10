@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-10
+
+- Updated Zhipu GLM-5.3-Flash after its limited-time 50% discount ended: standard prices are now 0.8 CNY input, 0.23 CNY cache hit, and 2.8 CNY output per 1M tokens; cache storage remains temporarily free.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows. DeepSeek's official page exposed the current V4 aliases but not its pricing rows, so those prices were carried forward unchanged.
+- Updated the default USD/CNY rate to 6.72825 from ExchangeRate-API.
+
 ## 2026-09-05
 
 - Same-day follow-up: added OpenAI GPT-6 Astra with a 1.05M context window and standard input/cached-input/cache-write/output prices of 10/1/12.5/50 USD per 1M tokens through 272k input tokens and 20/2/25/75 above that threshold, applying to the full request. The fetched model page no longer displays the limited-access rollout notice. GPT-5.6 Sol, Terra, and Luna remain listed and are retained.
