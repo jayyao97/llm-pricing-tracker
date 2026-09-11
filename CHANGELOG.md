@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-11
+
+- Replaced retired DeepSeek V4 Flash with V4.1 Flash, which adds image input support. Off-peak/peak cache-miss prices decreased to 0.15/0.30 USD, cache-hit prices to 0.003/0.006 USD, and output prices to 0.60/1.20 USD per 1M tokens. V4 Pro remains available until its announced September 14 retirement.
+- Updated DeepSeek's pricing conditions to the current official schedule: peak hours are 01:00-04:00 and 06:00-10:00 UTC, Monday through Friday; all other hours are off-peak.
+- Removed Zhipu GLM-5-Turbo, which is no longer offered on the official pricing page. Rechecked all other requested provider prices and curated lineups; no other verified changes. Kimi's official index still lists K3, K2.7 Code, and K2.6, but its fetched per-model pages did not expose pricing rows.
+- Updated the default USD/CNY rate to 6.725515 from ExchangeRate-API.
+
 ## 2026-09-10
 
 - Updated Zhipu GLM-5.3-Flash after its limited-time 50% discount ended: standard prices are now 0.8 CNY input, 0.23 CNY cache hit, and 2.8 CNY output per 1M tokens; cache storage remains temporarily free.
