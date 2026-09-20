@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-20
+
+- Added Kimi K3 cache-write pricing from the current official table: 3 USD per 1M tokens for the 5-minute TTL and 6 USD per 1M tokens for the 1-hour TTL. Existing cached-input, uncached-input, and output prices are unchanged.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes.
+- Updated the default USD/CNY rate to 6.714087 from ExchangeRate-API.
+
 ## 2026-09-11
 
 - Replaced retired DeepSeek V4 Flash with V4.1 Flash, which adds image input support. Off-peak/peak cache-miss prices decreased to 0.15/0.30 USD, cache-hit prices to 0.003/0.006 USD, and output prices to 0.60/1.20 USD per 1M tokens. V4 Pro remains available until its announced September 14 retirement.
