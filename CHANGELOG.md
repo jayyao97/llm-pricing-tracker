@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-09-22
+
+- Replaced xAI Grok 4.6 with Grok 4.7, the current frontier model; its 500k context window and standard short-/long-context prices are unchanged.
+- Replaced ByteDance Doubao Seed 2.0 Lite with Doubao Seed 2.1 Lite, which expands the context window to 1M tokens and adds standard audio input/cache-hit pricing alongside its non-audio rates.
+- Replaced Xiaomi MiMo V2.5 Pro and MiMo V2.5 with MiMo V2.6 Pro and MiMo V2.6 Flash at unchanged overseas real-time prices; the V2.5 models are scheduled for deprecation on 2026-10-21.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes.
+- Updated the default USD/CNY rate to 6.704712 from ExchangeRate-API.
+
 ## 2026-09-20
 
 - Added Kimi K3 cache-write pricing from the current official table: 3 USD per 1M tokens for the 5-minute TTL and 6 USD per 1M tokens for the 1-hour TTL. Existing cached-input, uncached-input, and output prices are unchanged.
