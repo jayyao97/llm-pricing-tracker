@@ -104,6 +104,7 @@
     {
       "provider": "OpenAI",
       "id": "gpt-6-astra",
+      "comparisonGroup": "nonChinaBig",
       "name": "GPT-6 Astra",
       "contextWindow": "1.05M",
       "modalities": {
@@ -212,6 +213,7 @@
     {
       "provider": "OpenAI",
       "id": "gpt-5.6-sol",
+      "comparisonGroup": "nonChinaDaily",
       "name": "GPT-5.6 Sol",
       "contextWindow": "1.05M",
       "modalities": {
@@ -323,6 +325,7 @@
     {
       "provider": "OpenAI",
       "id": "gpt-5.6-terra",
+      "comparisonGroup": null,
       "name": "GPT-5.6 Terra",
       "contextWindow": "1.05M",
       "modalities": {
@@ -434,6 +437,7 @@
     {
       "provider": "OpenAI",
       "id": "gpt-5.6-luna",
+      "comparisonGroup": null,
       "name": "GPT-5.6 Luna",
       "contextWindow": "1.05M",
       "modalities": {
@@ -545,6 +549,7 @@
     {
       "provider": "Meta",
       "id": "muse-spark-1.1",
+      "comparisonGroup": "nonChinaDaily",
       "name": "Muse Spark 1.1",
       "contextWindow": "1,048,576 tokens",
       "modalities": {
@@ -602,6 +607,7 @@
     {
       "provider": "Anthropic",
       "id": "claude-fable-5-1",
+      "comparisonGroup": "nonChinaBig",
       "name": "Claude Fable 5.1",
       "contextWindow": "1M",
       "modalities": {
@@ -680,6 +686,7 @@
     {
       "provider": "Anthropic",
       "id": "claude-opus-5",
+      "comparisonGroup": "nonChinaDaily",
       "name": "Claude Opus 5",
       "contextWindow": "1M",
       "modalities": {
@@ -758,6 +765,7 @@
     {
       "provider": "Anthropic",
       "id": "claude-sonnet-5",
+      "comparisonGroup": null,
       "name": "Claude Sonnet 5",
       "contextWindow": "1M",
       "modalities": {
@@ -836,6 +844,7 @@
     {
       "provider": "Anthropic",
       "id": "claude-haiku-4.5",
+      "comparisonGroup": null,
       "name": "Claude Haiku 4.5",
       "contextWindow": "200k",
       "modalities": {
@@ -914,6 +923,7 @@
     {
       "provider": "Google",
       "id": "gemini-3.1-pro-preview",
+      "comparisonGroup": "nonChinaDaily",
       "name": "Gemini 3.1 Pro Preview",
       "contextWindow": "1M",
       "modalities": {
@@ -1016,6 +1026,7 @@
     {
       "provider": "Google",
       "id": "gemini-3.8-flash",
+      "comparisonGroup": null,
       "name": "Gemini 3.8 Flash",
       "contextWindow": "1M",
       "modalities": {
@@ -1085,6 +1096,7 @@
     {
       "provider": "DeepSeek",
       "id": "deepseek-v4.1-flash",
+      "comparisonGroup": "chinaLite",
       "name": "DeepSeek V4.1 Flash",
       "contextWindow": "1M",
       "modalities": {
@@ -1171,6 +1183,7 @@
     {
       "provider": "DeepSeek",
       "id": "deepseek-v4-pro",
+      "comparisonGroup": "chinaBig",
       "name": "DeepSeek V4 Pro",
       "contextWindow": "1M",
       "modalities": {
@@ -1256,6 +1269,7 @@
     {
       "provider": "xAI",
       "id": "grok-4.7",
+      "comparisonGroup": "nonChinaDaily",
       "name": "Grok 4.7",
       "contextWindow": "500k",
       "modalities": {
@@ -1345,6 +1359,7 @@
     {
       "provider": "Zhipu",
       "id": "glm-5.3",
+      "comparisonGroup": "chinaBig",
       "name": "GLM-5.3",
       "contextWindow": "1M",
       "modalities": {
@@ -1400,6 +1415,7 @@
     {
       "provider": "Zhipu",
       "id": "glm-5.3-flash",
+      "comparisonGroup": "chinaLite",
       "name": "GLM-5.3-Flash",
       "contextWindow": "1M",
       "modalities": {
@@ -1469,6 +1485,7 @@
     {
       "provider": "Zhipu",
       "id": "glm-5.1",
+      "comparisonGroup": null,
       "name": "GLM-5.1",
       "contextWindow": "200k",
       "modalities": {
@@ -1560,6 +1577,7 @@
     {
       "provider": "Zhipu",
       "id": "glm-5v-turbo",
+      "comparisonGroup": null,
       "name": "GLM-5V-Turbo",
       "contextWindow": "200k",
       "modalities": {
@@ -1653,6 +1671,7 @@
     {
       "provider": "Alibaba",
       "id": "qwen3.8-max",
+      "comparisonGroup": "chinaBig",
       "name": "Qwen3.8 Max",
       "contextWindow": "1M",
       "modalities": {
@@ -1694,6 +1713,7 @@
     {
       "provider": "Alibaba",
       "id": "qwen3.7-plus",
+      "comparisonGroup": null,
       "name": "Qwen3.7 Plus",
       "contextWindow": "1M",
       "modalities": {
@@ -1759,6 +1779,7 @@
     {
       "provider": "Alibaba",
       "id": "qwen3.8-flash",
+      "comparisonGroup": "chinaLite",
       "name": "Qwen3.8 Flash",
       "contextWindow": "1M",
       "modalities": {
@@ -1800,6 +1821,7 @@
     {
       "provider": "ByteDance",
       "id": "doubao-seed-evolving",
+      "comparisonGroup": null,
       "name": "Doubao Seed Evolving",
       "contextWindow": "256k",
       "modalities": {
@@ -1869,6 +1891,7 @@
     {
       "provider": "ByteDance",
       "id": "doubao-seed-2.1-pro",
+      "comparisonGroup": "chinaBig",
       "name": "Doubao Seed 2.1 Pro",
       "contextWindow": "256k",
       "modalities": {
@@ -1938,6 +1961,7 @@
     {
       "provider": "ByteDance",
       "id": "doubao-seed-2.1-turbo",
+      "comparisonGroup": null,
       "name": "Doubao Seed 2.1 Turbo",
       "contextWindow": "256k",
       "modalities": {
@@ -2007,6 +2031,7 @@
     {
       "provider": "ByteDance",
       "id": "doubao-seed-2.1-lite",
+      "comparisonGroup": "chinaLite",
       "name": "Doubao Seed 2.1 Lite",
       "contextWindow": "1M",
       "modalities": {
@@ -2104,6 +2129,7 @@
     {
       "provider": "ByteDance",
       "id": "doubao-seed-2.0-mini",
+      "comparisonGroup": null,
       "name": "Doubao Seed 2.0 Mini",
       "contextWindow": "256k",
       "modalities": {
@@ -2267,6 +2293,7 @@
     {
       "provider": "Xiaomi",
       "id": "mimo-v2.6-pro",
+      "comparisonGroup": "chinaBig",
       "name": "MiMo V2.6 Pro",
       "contextWindow": "1M",
       "modalities": {
@@ -2330,6 +2357,7 @@
     {
       "provider": "Xiaomi",
       "id": "mimo-v2.6-flash",
+      "comparisonGroup": "chinaLite",
       "name": "MiMo V2.6 Flash",
       "contextWindow": "1M",
       "modalities": {
@@ -2396,6 +2424,7 @@
     {
       "provider": "Kimi",
       "id": "kimi-k3",
+      "comparisonGroup": "chinaBig",
       "name": "Kimi K3",
       "contextWindow": "1,048,576 tokens",
       "modalities": {
@@ -2472,6 +2501,7 @@
     {
       "provider": "Kimi",
       "id": "kimi-k2.6",
+      "comparisonGroup": null,
       "name": "Kimi K2.6",
       "contextWindow": "262k",
       "modalities": {
@@ -2529,6 +2559,7 @@
     {
       "provider": "Kimi",
       "id": "kimi-k2.7-code",
+      "comparisonGroup": null,
       "name": "Kimi K2.7 Code",
       "contextWindow": "262k",
       "modalities": {
@@ -2583,6 +2614,7 @@
     {
       "provider": "MiniMax",
       "id": "minimax-m3",
+      "comparisonGroup": "chinaBig",
       "name": "MiniMax M3",
       "contextWindow": "1M",
       "modalities": {
@@ -2673,6 +2705,7 @@
     {
       "provider": "LongCat",
       "id": "longcat-2.0",
+      "comparisonGroup": "chinaBig",
       "name": "LongCat-2.0",
       "contextWindow": "1M",
       "modalities": {

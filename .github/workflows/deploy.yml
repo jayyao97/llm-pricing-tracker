@@ -38,6 +38,9 @@ jobs:
       - name: Check JavaScript syntax
         run: node --check src/app.js
 
+      - name: Test comparison presets
+        run: node scripts/test-comparison-presets.mjs
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:

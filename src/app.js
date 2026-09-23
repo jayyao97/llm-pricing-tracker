@@ -41,17 +41,6 @@ const els = {
 const moneyFormatters = new Map();
 let floatingHeaderSignature = "";
 
-const providerGroups = {
-  big3: ["OpenAI", "Anthropic", "Google"],
-  china: ["Alibaba", "ByteDance", "DeepSeek", "Kimi", "LongCat", "MiniMax", "Xiaomi", "Zhipu"],
-};
-
-const dailyBigModelRules = {
-  OpenAI: (model) => !/\bpro\b/i.test(model.name),
-  Anthropic: (model) => /\bopus\b/i.test(model.name),
-  Google: (model) => /\bpro\b/i.test(model.name),
-};
-
 async function init() {
   if (window.location.protocol === "file:") {
     throw new Error("Open this project through a local HTTP server or a static host. Browsers block JSON fetches from file:// pages.");
@@ -206,6 +195,9 @@ function providerOption(value, label, checked) {
 function render() {
   const version = currentVersion();
   const models = filteredModels(version);
+  els.presetButtons.forEach((button) => {
+    button.disabled = comparisonPresetModels(version, button.dataset.comparePreset).length === 0;
+  });
   clearFloatingHeaders();
   renderHeader(version);
   renderSummary(version, models);
@@ -508,9 +500,7 @@ function setModelSelected(selectionKey, isSelected) {
 
 function applyComparisonPreset(preset) {
   const version = currentVersion();
-  const models = preset === "bigDaily"
-    ? dailyBigModels(version)
-    : highestPricedModelsByProvider(version, providersForPreset(version, preset));
+  const models = comparisonPresetModels(version, preset);
 
   state.selectedModels.clear();
   models.forEach((model) => {
@@ -521,28 +511,12 @@ function applyComparisonPreset(preset) {
   document.querySelector(".compare")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function providersForPreset(version, preset) {
-  const providers = [...new Set(version.models.map((model) => model.provider))].sort();
+function comparisonPresetModels(version, preset) {
   if (preset === "all") {
-    return providers;
+    const providers = [...new Set(version.models.map((model) => model.provider))].sort();
+    return highestPricedModelsByProvider(version, providers);
   }
-  if (preset === "china") {
-    return providerGroups.china.filter((provider) => providers.includes(provider));
-  }
-  if (preset === "nonChina") {
-    return providers.filter((provider) => !providerGroups.china.includes(provider));
-  }
-  return [];
-}
-
-function dailyBigModels(version) {
-  return providerGroups.big3
-    .map((provider) => {
-      const providerModels = version.models.filter((model) => model.provider === provider);
-      const preferred = providerModels.filter((model) => dailyBigModelRules[provider]?.(model));
-      return highestPricedModel(preferred.length ? preferred : providerModels);
-    })
-    .filter(Boolean);
+  return version.models.filter((model) => model.comparisonGroup === preset);
 }
 
 function highestPricedModelsByProvider(version, providers) {
