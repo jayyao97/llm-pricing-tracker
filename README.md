@@ -67,6 +67,7 @@ Before pushing a release, run:
 node scripts/build-data.mjs
 node scripts/validate-data.mjs
 node --check src/app.js
+node scripts/test-comparison-presets.mjs
 ```
 
 When changing `styles.css` or `src/app.js`, bump the query version in `index.html` so browsers request the updated asset.
@@ -75,6 +76,7 @@ When changing `styles.css` or `src/app.js`, bump the query version in `index.htm
 
 1. Add or update a snapshot in `data/snapshots/YYYY/MM/YYYY-MM-DD.json`.
 2. Keep an official source URL for every model price.
+   Review `comparisonGroup` for every added or updated model. Move the relevant preset to the latest model in that tier and set the superseded model to `null`. New snapshots require explicit membership (or `null`) for every model; validation rejects missing groups and duplicate providers within a group. See `docs/data-schema.md` for the four tiers.
 3. Rebuild the generated dataset.
 4. Run validation:
 

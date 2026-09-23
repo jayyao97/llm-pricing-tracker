@@ -25,6 +25,7 @@
 - `provider`: Provider name.
 - `id`: Model ID.
 - `name`: Display name.
+- `comparisonGroup`: Required from 2026-09-22 onward: `nonChinaBig` (super-large models such as Astra/Fable), `chinaBig` (each Chinese provider's current flagship), `nonChinaDaily` (daily models such as Sol/Opus), `chinaLite` (Chinese Flash/Lite models), or `null` (not selected by a preset). Each group has at most one model per provider. Review this field when adding or replacing models; clear the previous generation's group. Membership belongs to the dated snapshot, not to price sorting or frontend model-name rules. Older snapshots without this field have no tier presets.
 - `contextWindow`: Context window; use `null` when unknown.
 - `modalities.input`: Supported input modalities, such as `text`, `image`, `audio`, or `video`.
 - `modalities.output`: Supported output modalities, such as `text`, `image`, `speech`, or `embedding`.

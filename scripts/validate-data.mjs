@@ -30,11 +30,22 @@ for (const version of data.versions) {
   }
 
   const ids = new Set();
+  const comparisonProviders = new Set();
   for (const model of version.models) {
     assert(typeof model.provider === "string" && model.provider.length > 0, "model.provider required");
     assert(typeof model.id === "string" && model.id.length > 0, "model.id required");
     assert(!ids.has(model.id), `duplicate model id in ${version.date}: ${model.id}`);
     ids.add(model.id);
+    if (version.date >= "2026-09-22" || model.comparisonGroup !== undefined) {
+      const group = model.comparisonGroup;
+      assert([null, "nonChinaBig", "chinaBig", "nonChinaDaily", "chinaLite"].includes(group),
+        `comparisonGroup required for ${model.id} in ${version.date}; review grouping when updating models (null explicitly excludes a model)`);
+      if (group !== null) {
+        const key = `${group}:${model.provider}`;
+        assert(!comparisonProviders.has(key), `multiple ${model.provider} models in ${group} for ${version.date}; replace the previous generation`);
+        comparisonProviders.add(key);
+      }
+    }
     assert(typeof model.name === "string" && model.name.length > 0, `model.name required for ${model.id}`);
     assert(model.contextWindow === null || typeof model.contextWindow === "string", `invalid contextWindow for ${model.id}`);
     assertModalities(model.modalities, `modalities for ${model.id}`);
