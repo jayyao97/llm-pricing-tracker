@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-23
+
+- Replaced OpenAI GPT-5.6 Sol, GPT-5.6 Terra, and GPT-5.6 Luna with the current GPT-6 Sol and GPT-6 Luna flagship tiers. GPT-6 Sol standard short-/long-context input, cached-input, cache-write, and output prices are 2/0.2/2.5/10 and 4/0.4/5/15 USD per 1M tokens; GPT-6 Luna prices are 0.1/0.01/0.125/0.5 and 0.2/0.02/0.25/0.75 USD.
+- Replaced Anthropic Claude Opus 5 with Claude Opus 5.5. Standard input, 5-minute cache-write, 1-hour cache-write, cache-read, and output prices decreased to 4/5/8/0.2/20 USD per 1M tokens.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes.
+- Updated the default USD/CNY rate to 6.710202 from ExchangeRate-API.
+
 ## 2026-09-22
 
 - Replaced xAI Grok 4.6 with Grok 4.7, the current frontier model; its 500k context window and standard short-/long-context prices are unchanged.
