@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-30
+
+- Replaced OpenAI GPT-6 Sol with GPT-6.1 Sol. Standard cached-input prices decreased from 0.20/0.40 to 0.10/0.20 USD per 1M tokens for short/long context; input, cache-write, output, and context-window values are unchanged.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes.
+- Updated the default USD/CNY rate to 6.721579 from ExchangeRate-API.
+
 ## 2026-09-29
 
 - Replaced legacy Claude Sonnet 5 with the current Claude Sonnet 5.5 tier. Standard input, 5-minute cache-write, 1-hour cache-write, cache-read, and output prices remain 2/2.5/4/0.2/10 USD per 1M tokens.
