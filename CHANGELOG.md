@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07
+
+- Updated DeepSeek's pricing conditions to reflect that Chinese public holidays are off-peak all day; numeric prices and model lineup are unchanged.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes.
+- Updated the default USD/CNY rate to 6.714466 from ExchangeRate-API.
+
 ## 2026-09-30
 
 - Replaced OpenAI GPT-6 Sol with GPT-6.1 Sol. Standard cached-input prices decreased from 0.20/0.40 to 0.10/0.20 USD per 1M tokens for short/long context; input, cache-write, output, and context-window values are unchanged.
