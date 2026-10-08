@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-08
+
+- Replaced Claude Haiku 4.5 with Claude Haiku 5.5, the current small model tier. The context window increases from 200k to 1M tokens, with new standard price tiers for prompts up to 100k tokens and over 100k tokens.
+- Rechecked all other requested provider prices and curated lineups against their official pages; no other verified changes.
+- Updated the default USD/CNY rate to 6.711932 from ExchangeRate-API.
+
 ## 2026-10-07
 
 - Updated DeepSeek's pricing conditions to reflect that Chinese public holidays are off-peak all day; numeric prices and model lineup are unchanged.
