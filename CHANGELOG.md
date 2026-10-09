@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-09
+
+- Reduced Claude Sonnet 5.5 cache-read pricing from 0.20 to 0.10 USD per 1M tokens; other token prices are unchanged.
+- Replaced Meta Muse Spark 1.1 with Muse Spark 1.3, the latest recommended Standard-tier version; token prices and context window are unchanged. Audio understanding is not fully supported in 1.3.
+- Rechecked the other requested provider prices and curated lineups; carried LongCat forward because its official page was unreadable.
+- Updated the default USD/CNY rate to 6.712457 from ExchangeRate-API.
+
 ## 2026-10-08
 
 - Replaced Claude Haiku 4.5 with Claude Haiku 5.5, the current small model tier. The context window increases from 200k to 1M tokens, with new standard price tiers for prompts up to 100k tokens and over 100k tokens.
