@@ -16,6 +16,20 @@ const latest = await snapshot("2026-09-23");
 const previous = await snapshot("2026-09-22");
 const ids = (version, group) => Array.from(select(version, group), (model) => model.id);
 
+// Official context limits may use thousands separators.
+assert.equal(context.parseTokenValue("1,048,576 tokens (unified input and output)"), 1048576);
+assert.equal(context.parseTokenValue("262,144 tokens"), 262144);
+assert.equal(context.parseTokenValue("1.05M"), 1050000);
+assert.equal(context.parseTokenValue("200k"), 200000);
+const contextModel = {
+  contextWindow: "1,048,576 tokens (unified input and output)",
+  pricingItems: [{ conditions: { contextRange: "all" } }],
+};
+const bands = context.contextBands([contextModel]);
+assert.equal(bands.length, 1);
+assert.equal(bands[0].upper, 1048576);
+assert.equal(bands[0].label, "<= 1048576");
+
 assert.deepEqual(ids(latest, "nonChinaBig"), ["gpt-6-astra", "claude-fable-5-1"]);
 assert.deepEqual(ids(latest, "nonChinaDaily"), [
   "gpt-6-sol", "muse-spark-1.1", "claude-opus-5-5", "gemini-3.1-pro-preview", "grok-4.7",
