@@ -1149,7 +1149,7 @@ function parseTokenValue(value) {
   if (!value) {
     return Number.NaN;
   }
-  const match = String(value).toLowerCase().match(/(\d+(?:\.\d+)?)\s*([km])?/);
+  const match = String(value).toLowerCase().replace(/,/g, "").match(/(\d+(?:\.\d+)?)\s*([km])?/);
   return match ? parseTokenNumber(match[1], match[2]) : Number.NaN;
 }
 
