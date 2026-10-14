@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-14
+
+- Replaced Gemini 3.1 Pro Preview in the curated Google flagship slot with the generally available Gemini 4 Argon. Standard input, implicit cached-input, and output prices are 2/0.10/10 USD per 1M tokens through 2026-11-30, increasing to 4/0.20/20 on 2026-12-01.
+- Argon has a unified 1,048,576-token input/output context window and no explicit cache storage. Gemini 3.1 Pro Preview remains available from Google.
+- Rechecked the other provider prices and curated lineups; carried LongCat forward because its official page was unreadable.
+- Updated the default USD/CNY rate to 6.70582 from ExchangeRate-API.
+
 ## 2026-10-09
 
 - Reduced Claude Sonnet 5.5 cache-read pricing from 0.20 to 0.10 USD per 1M tokens; other token prices are unchanged.
