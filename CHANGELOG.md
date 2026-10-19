@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-20
+
+- Added MiniMax M3.1 Flash, released on 2026-10-19, with flat input/cached-input/output prices of 0.15/0.015/0.60 USD per 1M tokens, a 1M-token context window, and text/image/video input. MiniMax M3 remains available and is retained.
+- Rechecked existing provider prices and curated lineups; carried LongCat forward because its official page was unreadable.
+- Updated the default USD/CNY rate to 6.69274 from ExchangeRate-API.
+
 ## 2026-10-14
 
 - Replaced Gemini 3.1 Pro Preview in the curated Google flagship slot with the generally available Gemini 4 Argon. Standard input, implicit cached-input, and output prices are 2/0.10/10 USD per 1M tokens through 2026-11-30, increasing to 4/0.20/20 on 2026-12-01.
