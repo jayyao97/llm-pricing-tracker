@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-21
+
+- Added separate OpenAI 12-hour cache-write prices for GPT-6 Astra (25/50 USD), GPT-6.1 Sol (5/10 USD), and GPT-6 Luna (0.25/0.50 USD) per 1M tokens for short/long context. These are total write prices in the Responses API.
+- Marked existing unchanged cache-write prices as the default 30-minute TTL; input, cached-input, and output prices are unchanged.
+- Rechecked provider prices and curated lineups; carried LongCat forward because its official page was unreadable.
+
 ## 2026-10-20
 
 - Added MiniMax M3.1 Flash, released on 2026-10-19, with flat input/cached-input/output prices of 0.15/0.015/0.60 USD per 1M tokens, a 1M-token context window, and text/image/video input. MiniMax M3 remains available and is retained.
