@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-24
+
+- Replaced Kimi K3 in the curated flagship slot with Kimi K3.1 Pro. Input/cached-input/output prices are 2.00/0.20/10.00 USD per 1M tokens, with 5-minute/1-hour cache-write prices of 2.00/4.00 USD and a 1,048,576-token context window.
+- Kimi K3 remains offered as the previous generation. Retained K2.6 and K2.7 Code ahead of their announced future retirement.
+- Rechecked all tracked provider prices and curated lineups; all other values are unchanged. LongCat official pricing is readable again and confirms existing USD rates.
+
 ## 2026-10-21
 
 - Added separate OpenAI 12-hour cache-write prices for GPT-6 Astra (25/50 USD), GPT-6.1 Sol (5/10 USD), and GPT-6 Luna (0.25/0.50 USD) per 1M tokens for short/long context. These are total write prices in the Responses API.
