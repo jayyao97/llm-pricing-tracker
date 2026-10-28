@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-28
+
+- Added GPT-6.1 Terra, released on 2026-10-26, alongside the existing OpenAI tiers. Standard input/cached-input/output prices are 1.00/0.05/5.00 USD per 1M tokens up to 272k input tokens and 2.00/0.10/7.50 USD above 272k.
+- Recorded separate 30-minute/12-hour cache-write prices of 1.25/2.50 USD for short context and 2.50/5.00 USD for long context, with a 1.05M-token context window and text/image input. Existing comparison presets are unchanged.
+- Rechecked the other tracked prices and curated lineups; all existing values are carried forward unchanged. LongCat official pricing was unreadable.
+
 ## 2026-10-24
 
 - Replaced Kimi K3 in the curated flagship slot with Kimi K3.1 Pro. Input/cached-input/output prices are 2.00/0.20/10.00 USD per 1M tokens, with 5-minute/1-hour cache-write prices of 2.00/4.00 USD and a 1,048,576-token context window.
