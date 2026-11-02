@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-03
+
+- Added Meta Muse Wonder 1.0 alongside Muse Spark 1.3. Standard input/cached-input/output prices are 4.00/0.20/20.00 USD per 1M tokens, with a 1,048,576-token context window and text/image/video/audio/PDF input. Existing comparison presets are unchanged.
+- Rechecked the other tracked prices and curated lineups; existing values are carried forward unchanged. Kimi K2.6 and K2.7 Code remain available to existing users ahead of planned retirement at the end of December 2026. LongCat official pricing was unreadable.
+
 ## 2026-10-28
 
 - Added GPT-6.1 Terra, released on 2026-10-26, alongside the existing OpenAI tiers. Standard input/cached-input/output prices are 1.00/0.05/5.00 USD per 1M tokens up to 272k input tokens and 2.00/0.10/7.50 USD above 272k.
