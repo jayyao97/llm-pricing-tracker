@@ -3,7 +3,8 @@
 ## 2026-11-03
 
 - Added Meta Muse Wonder 1.0 alongside Muse Spark 1.3. Standard input/cached-input/output prices are 4.00/0.20/20.00 USD per 1M tokens, with a 1,048,576-token context window and text/image/video/audio/PDF input. Existing comparison presets are unchanged.
-- Rechecked the other tracked prices and curated lineups; existing values are carried forward unchanged. Kimi K2.6 and K2.7 Code remain available to existing users ahead of planned retirement at the end of December 2026. LongCat official pricing was unreadable.
+- Replaced LongCat-2.0 in the curated flagship slot with the generally available LongCat-2.5, released on 2026-11-02. Limited-time input/cached-input/output prices remain 0.30/0.006/1.20 USD per 1M tokens, with a 1M-token context window and text/image/video input. Updated official source links after following the documentation migration.
+- Rechecked the other tracked prices and curated lineups; existing values are carried forward unchanged. Kimi K2.6 and K2.7 Code remain available to existing users ahead of planned retirement at the end of December 2026.
 
 ## 2026-10-28
 
