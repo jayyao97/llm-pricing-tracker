@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-10
+
+- Replaced Fable 5.1 in the curated flagship slot with Fable 5.2, released on 2026-11-09. Input/output prices are 8/40 USD and 5-minute/1-hour cache-write/cached-input prices are 10/16/0.20 USD per 1M tokens, all 20% lower than the previous generation.
+- Added Meta Muse Ember 1.0 as the efficient execution tier, with a 1,048,576-token context window and text/image/video/audio/PDF input. Standard input/cached-input/output prices are 0.10/0.004/0.50 USD per 1M tokens up to 200k input tokens and 0.30/0.012/1.50 USD above 200k, billed for the full request. Existing comparison presets are unchanged.
+- Rechecked all other tracked prices and curated lineups; existing values are carried forward unchanged. Kimi K2 models remain available to existing users ahead of planned retirement at the end of December 2026.
+
 ## 2026-11-03
 
 - Added Meta Muse Wonder 1.0 alongside Muse Spark 1.3. Standard input/cached-input/output prices are 4.00/0.20/20.00 USD per 1M tokens, with a 1,048,576-token context window and text/image/video/audio/PDF input. Existing comparison presets are unchanged.
