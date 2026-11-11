@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-11
+
+- Added the generally available Gemini 4 Carbon flagship, released on 2026-11-10, alongside Gemini 4 Argon. Standard input/cached-input/output prices are 2.00/0.10/10.00 USD per 1M tokens through 2026-11-30, increasing to 4.00/0.20/20.00 USD on 2026-12-01.
+- Carbon supports text/image/audio/video/PDF input and text output, with a unified 1,048,576-token input/output context window and implicit caching only. Existing comparison presets are unchanged.
+- Rechecked all tracked prices and curated lineups; all existing models and prices are carried forward unchanged.
+
 ## 2026-11-10
 
 - Replaced Fable 5.1 in the curated flagship slot with Fable 5.2, released on 2026-11-09. Input/output prices are 8/40 USD and 5-minute/1-hour cache-write/cached-input prices are 10/16/0.20 USD per 1M tokens, all 20% lower than the previous generation.
