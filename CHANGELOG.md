@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-13
+
+- Replaced Gemini 3.8 Flash in the curated efficient model slot with the generally available Gemini 4 Hydrogen, released on 2026-11-12 and recommended by Google as the upgrade from Flash. Standard input/cached-input/output prices are 1.50/0.075/7.50 USD per 1M tokens. Gemini 3.8 Flash remains available from Google.
+- Hydrogen supports text/image/audio/video/PDF input and text output, with a unified 1,048,576-token input/output context window and implicit caching only; explicit cache storage no longer applies to this slot.
+- Rechecked all tracked prices and curated lineups; all other models and prices are carried forward unchanged.
+
 ## 2026-11-11
 
 - Added the generally available Gemini 4 Carbon flagship, released on 2026-11-10, alongside Gemini 4 Argon. Standard input/cached-input/output prices are 2.00/0.10/10.00 USD per 1M tokens through 2026-11-30, increasing to 4.00/0.20/20.00 USD on 2026-12-01.
