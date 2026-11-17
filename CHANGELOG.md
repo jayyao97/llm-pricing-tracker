@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-17
+
+- Replaced Qwen3.8 Max in the curated flagship slot with the generally available Qwen4-Max. International standard input/output prices are 1.50/4.50 USD per 1M tokens, 25% lower than the previous generation. Qwen3.8 Max remains available from Alibaba.
+- Qwen4-Max supports text/image/video input and text output with a 1M-token context window. Explicit/implicit cache reads cost 0.075 USD and 5-minute/1-hour explicit cache writes cost 1.875/3.00 USD per 1M tokens.
+- Rechecked all tracked prices and curated lineups; all other models and prices are carried forward unchanged. Kimi K2 models remain available to existing users ahead of planned retirement at the end of December 2026.
+
 ## 2026-11-13
 
 - Replaced Gemini 3.8 Flash in the curated efficient model slot with the generally available Gemini 4 Hydrogen, released on 2026-11-12 and recommended by Google as the upgrade from Flash. Standard input/cached-input/output prices are 1.50/0.075/7.50 USD per 1M tokens. Gemini 3.8 Flash remains available from Google.
