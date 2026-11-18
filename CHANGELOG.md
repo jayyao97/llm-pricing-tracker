@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-19
+
+- Replaced GPT-6 Astra and GPT-6.1 Sol in the curated flagship/main tier slots with GPT-6.2 Astra and GPT-6.2 Sol. Astra standard short-context input/cached-input/output prices are now 8/0.40/40 USD per 1M tokens; Sol prices are unchanged. Separate cache writes and long-context tiers are preserved.
+- Replaced Qwen3.8 Max with generally available Qwen4-Max at International input/output prices of 1.50/4.50 USD per 1M tokens, with multimodal input and explicit cache pricing.
+- Rechecked all tracked providers; all other standard prices and models are carried forward unchanged. Superseded models remain offered by their providers.
+
 ## 2026-11-13
 
 - Replaced Gemini 3.8 Flash in the curated efficient model slot with the generally available Gemini 4 Hydrogen, released on 2026-11-12 and recommended by Google as the upgrade from Flash. Standard input/cached-input/output prices are 1.50/0.075/7.50 USD per 1M tokens. Gemini 3.8 Flash remains available from Google.
