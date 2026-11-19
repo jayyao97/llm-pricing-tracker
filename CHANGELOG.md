@@ -4,6 +4,7 @@
 
 - Replaced GPT-6 Astra and GPT-6.1 Sol in the curated flagship/main tier slots with GPT-6.2 Astra and GPT-6.2 Sol. Astra standard short-context input/cached-input/output prices are now 8/0.40/40 USD per 1M tokens; Sol prices are unchanged. Separate cache writes and long-context tiers are preserved.
 - Replaced Qwen3.8 Max with generally available Qwen4-Max at International input/output prices of 1.50/4.50 USD per 1M tokens, with multimodal input and explicit cache pricing.
+- Added Gemini 4 Neon, generally available since November 18, at standard input/cached-input/output prices of 3.00/0.15/15.00 USD per 1M tokens. Neon supports a unified 1,048,576-token context and implicit caching.
 - Rechecked all tracked providers; all other standard prices and models are carried forward unchanged. Superseded models remain offered by their providers.
 
 ## 2026-11-13

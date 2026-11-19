@@ -12,7 +12,7 @@
     {
       "date": "2026-11-19",
       "effectiveDate": "2026-11-19",
-      "notes": "Replaced the curated GPT-6 Astra and GPT-6.1 Sol slots with GPT-6.2 Astra and GPT-6.2 Sol, released November 17. Astra standard short-context input/output prices fall from 10/50 to 8/40 USD per 1M tokens; cached input falls from 1 to 0.40. Sol standard prices are unchanged. Both retain separate 30m/12h cache writes and the long-context tier above 272k input tokens. Replaced Qwen3.8 Max with generally available Qwen4-Max at International standard input/output prices of 1.50/4.50 USD per 1M tokens, with text/image/video input and separate cache read/write prices. Superseded models remain available from their providers. All other tracked standard prices and models are carried forward unchanged. Background completion windows are a public beta and are excluded from the standard pricing comparison.",
+      "notes": "Replaced the curated GPT-6 Astra and GPT-6.1 Sol slots with GPT-6.2 Astra and GPT-6.2 Sol, released November 17. Astra standard short-context input/output prices fall from 10/50 to 8/40 USD per 1M tokens; cached input falls from 1 to 0.40. Sol standard prices are unchanged. Both retain separate 30m/12h cache writes and the long-context tier above 272k input tokens. Replaced Qwen3.8 Max with generally available Qwen4-Max at International standard input/output prices of 1.50/4.50 USD per 1M tokens, with text/image/video input and separate cache read/write prices. Superseded models remain available from their providers. Added Gemini 4 Neon, generally available since November 18, at standard input/cached-input/output prices of 3.00/0.15/15.00 USD per 1M tokens. All other tracked standard prices and models are carried forward unchanged. Background completion windows are a public beta and are excluded from the standard pricing comparison.",
       "sources": [
         {
           "provider": "OpenAI",
@@ -324,6 +324,24 @@
           "provider": "Alibaba",
           "title": "Qwen4-Max Model",
           "url": "https://www.alibabacloud.com/help/en/model-studio/qwen4-max",
+          "accessedAt": "2026-11-19"
+        },
+        {
+          "provider": "Google",
+          "title": "Gemini 4 Neon Model",
+          "url": "https://aistudio.google.com/docs/models/gemini-4-neon",
+          "accessedAt": "2026-11-19"
+        },
+        {
+          "provider": "Google",
+          "title": "Gemini 4 Neon Standard Pricing",
+          "url": "https://aistudio.google.com/docs/pricing#gemini-4-neon",
+          "accessedAt": "2026-11-19"
+        },
+        {
+          "provider": "Google",
+          "title": "Gemini API Changelog: Gemini 4 Neon Release",
+          "url": "https://aistudio.google.com/docs/changelog#11-18-2026",
           "accessedAt": "2026-11-19"
         }
       ],
@@ -1546,6 +1564,65 @@
                 "contextRange": "all",
                 "cacheDuration": null,
                 "note": "includes thinking tokens; introductory price through 2026-11-30; 2026-12-01 price is 20.00"
+              }
+            }
+          ]
+        },
+        {
+          "provider": "Google",
+          "id": "gemini-4-neon",
+          "comparisonGroup": null,
+          "name": "Gemini 4 Neon",
+          "contextWindow": "1,048,576 tokens (unified input/output)",
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video"
+            ],
+            "output": [
+              "text"
+            ],
+            "documents": [
+              "pdf"
+            ]
+          },
+          "source": {
+            "url": "https://aistudio.google.com/docs/pricing#gemini-4-neon"
+          },
+          "pricingItems": [
+            {
+              "category": "input_tokens",
+              "label": "Input",
+              "price": 3,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "all",
+                "cacheDuration": null,
+                "note": null
+              }
+            },
+            {
+              "category": "cache_read_tokens",
+              "label": "Cached input",
+              "price": 0.15,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "all",
+                "cacheDuration": null,
+                "note": "implicit caching only; explicit caching is not supported"
+              }
+            },
+            {
+              "category": "output_tokens",
+              "label": "Output",
+              "price": 15,
+              "unit": "1M tokens",
+              "conditions": {
+                "contextRange": "all",
+                "cacheDuration": null,
+                "note": "includes thinking tokens"
               }
             }
           ]
