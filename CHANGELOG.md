@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-25
+
+- Added Gemini 4 Carbon to Non-China-Big and replaced Gemini 4 Argon with Gemini 4 Neon in Non-China-Daily. All tracked models and prices are carried forward.
+
 ## 2026-11-19
 
 - Replaced GPT-6 Astra and GPT-6.1 Sol in the curated flagship/main tier slots with GPT-6.2 Astra and GPT-6.2 Sol. Astra standard short-context input/cached-input/output prices are now 8/0.40/40 USD per 1M tokens; Sol prices are unchanged. Separate cache writes and long-context tiers are preserved.
